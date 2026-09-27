@@ -1,0 +1,3759 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Payments - Nova Health Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0ea5e9;
+            --primary-dark: #0f172a;
+            --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --emergency-red: #ef4444;
+        }
+
+        .contact-hero {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.8)),
+                url('https://images.unsplash.com/photo-1587351021759-3e566b6af7cc?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            padding: 12rem 0 10rem 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #fff, transparent);
+        }
+
+        .support-channels {
+            margin-top: -4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .channel-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.05);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f1f5f9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .channel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: 0.4s;
+            z-index: 1;
+        }
+
+        .channel-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 40px 80px rgba(14, 165, 233, 0.15);
+            border-color: transparent;
+        }
+
+        .channel-card:hover::before {
+            opacity: 0.03;
+        }
+
+        .channel-card * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .channel-card i {
+            width: 80px;
+            height: 80px;
+            background: #f1f5f9;
+            border-radius: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 2rem auto;
+            color: var(--primary-blue);
+            transition: 0.4s;
+        }
+
+        .channel-card:hover i {
+            background: var(--primary-blue);
+            color: white;
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .map-section {
+            padding: 8rem 0;
+            background: #f8fafc;
+        }
+
+        .map-wrapper {
+            position: relative;
+            border-radius: 3rem;
+            overflow: hidden;
+            height: 500px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .map-overlay-card {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 2rem;
+            max-width: 350px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .newsletter-box {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 8rem 4rem;
+            color: white;
+            border-radius: 4rem;
+            margin: 4rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(15, 23, 42, 0.3);
+        }
+
+        .newsletter-box::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 2.5rem auto 0 auto;
+            display: flex;
+            gap: 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1.5rem 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.2);
+        }
+
+        .pulse-red {
+            width: 12px;
+            height: 12px;
+            background: #ef4444;
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            animation: pulse-red 2s infinite;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes pulse-red {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .channel-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1.25rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 1.25rem;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #fbfcfd;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: white;
+            box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-input::placeholder {
+            color: #94a3b8;
+        }
+
+        textarea.form-input {
+            resize: none;
+            min-height: 150px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1.25rem;
+            font-size: 1.1rem;
+            border-radius: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+        }
+
+        /* Message Success State */
+        .form-success-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 20;
+            border-radius: 2rem;
+            text-align: center;
+            padding: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+            z-index: 9999;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-emergency {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+        }
+
+        .btn-emergency:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.6);
+            background: #dc2626;
+        }
+
+        /* Premium FAQ Styling */
+        .faq-section-premium {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            position: relative;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-blue);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-item.active {
+            border-color: var(--primary-blue);
+            background: #ffffff;
+            box-shadow: 0 25px 50px -12px rgba(14, 165, 233, 0.15);
+        }
+
+        .faq-question {
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 800;
+            color: #1e293b;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary-blue);
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .faq-answer {
+            padding: 0 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 2rem;
+            max-height: 500px;
+        }
+
+        .faq-question i {
+            width: 35px;
+            height: 35px;
+            background: #f1f5f9;
+            color: #64748b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.4s;
+            font-size: 0.9rem;
+        }
+
+        .faq-item.active .faq-question i {
+            background: white;
+            color: #6366f1;
+            transform: rotate(180deg);
+        }
+
+        /* Question & Answer Specific Colors */
+        .faq-question-text {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .faq-q-badge {
+            background: #6366f1;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 900;
+        }
+
+        .faq-a-badge {
+            background: #10b981;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .faq-item.active {
+            border-left: 6px solid #6366f1;
+        }
+
+        .faq-item.active .faq-answer {
+            background: #f0fdf4;
+            /* Very light green bg for answer */
+            border-top: 1px solid #d1fae5;
+            color: #065f46;
+            /* Deeper green for text */
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(5deg);
+            background-color: #128c7e;
+        }
+
+        .channel-card i.fa-whatsapp {
+            color: #25d366;
+            -webkit-text-fill-color: initial;
+            background: none;
+        }
+
+        .channel-card i.fa-linkedin {
+            color: #0077b5;
+            -webkit-text-fill-color: initial;
+            background: none;
+        }
+
+        .channel-card i.fa-instagram {
+            color: #e1306c;
+            -webkit-text-fill-color: initial;
+            background: none;
+        }
+
+        /* Payment Lobby & Modal Styles */
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .payment-card {
+            background: #f8fafc;
+            padding: 3rem 2rem;
+            border-radius: 2.5rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-card:hover {
+            background: white;
+            border-color: var(--primary-blue);
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgba(14, 165, 233, 0.15);
+        }
+
+        .payment-card i {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            color: var(--primary-blue);
+            transition: 0.3s;
+        }
+
+        .payment-card:hover i {
+            transform: scale(1.1);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 2rem;
+        }
+
+        .modal-container {
+            background: white;
+            width: 100%;
+            max-width: 550px;
+            border-radius: 3rem;
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: modalSlideUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .digital-showcase {
+            padding: 10rem 0;
+            background: white;
+            overflow: hidden;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .showcase-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+        }
+
+        .showcase-content p {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .feature-tag {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: #f0fdf4;
+            color: #22c55e;
+            border-radius: 2rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .mockup-wrapper {
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .laptop-mockup {
+            width: 100%;
+            border-radius: 1.5rem;
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.15);
+            transition: 0.6s ease;
+            transform: rotateY(-5deg) rotateX(2deg);
+        }
+
+        .laptop-mockup:hover {
+            transform: rotateY(0) rotateX(0) scale(1.02);
+        }
+
+        .floating-badge {
+            position: absolute;
+            bottom: -2rem;
+            right: -2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid #f1f5f9;
+        }
+
+        /* Updated Booking Styles */
+        .booking-section {
+            padding: 12rem 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center bottom;
+            background-repeat: no-repeat;
+            position: relative;
+            min-height: 800px;
+            display: flex;
+            align-items: center;
+        }
+
+        .booking-header {
+            text-align: center;
+            margin-bottom: 5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .booking-header h2 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .booking-header p {
+            font-size: 1.4rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        .booking-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 4rem;
+            box-shadow: 0 50px 100px -20px rgba(15, 23, 42, 0.1);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            overflow: hidden;
+            border: 1px solid rgba(241, 245, 249, 0.8);
+        }
+
+        .booking-form-area {
+            padding: 5rem;
+            border-right: 1px solid #f1f5f9;
+        }
+
+        .booking-info-area {
+            padding: 5rem;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .step-indicator {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            transition: 0.4s;
+        }
+
+        .step-dot.active {
+            background: var(--primary-blue);
+            width: 30px;
+            border-radius: 10px;
+        }
+
+        .form-section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            background: #eff6ff;
+            color: var(--primary-blue);
+            border-radius: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .section-title h3 {
+            font-size: 1.5rem;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .section-title p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin: 4px 0 0 0;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .floating-label-group {
+            position: relative;
+        }
+
+        .floating-input {
+            width: 100%;
+            padding: 1.5rem 1.5rem;
+            border: 2px solid #f1f5f9;
+            border-radius: 1.5rem;
+            font-size: 1rem;
+            background: #fbfcfd;
+            transition: all 0.3s;
+            color: #1e293b;
+            font-weight: 500;
+        }
+
+        .floating-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            background: white;
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.1);
+        }
+
+        .floating-label {
+            position: absolute;
+            top: 1.25rem;
+            left: 1.5rem;
+            color: #94a3b8;
+            pointer-events: none;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .floating-input:focus~.floating-label,
+        .floating-input:not(:placeholder-shown)~.floating-label {
+            top: -0.8rem;
+            left: 1rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            background: white;
+            padding: 0 0.5rem;
+        }
+
+        /* Enhanced Calendar */
+        .premium-calendar {
+            background: white;
+            border-radius: 2rem;
+            padding: 2.5rem;
+            border: 1px solid #f1f5f9;
+        }
+
+        .calendar-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .calendar-nav h4 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #1e293b;
+        }
+
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid #f1f5f9;
+            background: white;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .cal-day-label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #94a3b8;
+            text-align: center;
+            padding-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .cal-date {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        .cal-date:hover:not(.disabled) {
+            background: #eff6ff;
+            color: var(--primary-blue);
+        }
+
+        .cal-date.active {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+        }
+
+        .cal-date.disabled {
+            color: #e2e8f0;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Modern Time Slots */
+        .time-picker-area {
+            margin-top: 3rem;
+        }
+
+        .ampm-switch {
+            display: flex;
+            background: #f1f5f9;
+            padding: 6px;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .ampm-btn {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: #64748b;
+            z-index: 2;
+            transition: 0.3s;
+        }
+
+        .ampm-btn.active {
+            color: #1e293b;
+        }
+
+        .ampm-slider {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            width: calc(50% - 6px);
+            height: calc(100% - 12px);
+            background: white;
+            border-radius: 0.8rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ampm-switch[data-active="PM"] .ampm-slider {
+            left: calc(50%);
+        }
+
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .slot-btn {
+            padding: 1.25rem 1rem;
+            border: 2px solid #f1f5f9;
+            border-radius: 1.25rem;
+            background: white;
+            cursor: pointer;
+            font-weight: 700;
+            color: #475569;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .slot-btn:hover:not(.disabled) {
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .slot-btn.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.2);
+        }
+
+        .slot-btn.disabled {
+            background: #fbfcfd;
+            border-color: #f1f5f9;
+            color: #cbd5e1;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .premium-booking-btn {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            font-size: 1.25rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 4rem;
+            transition: 0.4s;
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .premium-booking-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(99, 102, 241, 0.3);
+        }
+
+        .booking-benefit {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.03);
+            flex-shrink: 0;
+        }
+
+        .benefit-text h4 {
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+            color: #1e293b;
+        }
+
+        .benefit-text p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 1100px) {
+            .booking-container {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-form-area,
+            .booking-info-area {
+                padding: 3rem;
+            }
+
+            .booking-info-area {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .slots-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .branch-card {
+            background: white;
+            border-radius: 3.5rem;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.05);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #f1f5f9;
+            position: relative;
+        }
+
+        .branch-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 50px 100px rgba(15, 23, 42, 0.1);
+            border-color: var(--primary-blue);
+        }
+
+        .status-indicator {
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: 0.3s;
+        }
+
+        .status-open {
+            background: rgba(220, 252, 231, 0.9);
+            color: #15803d;
+        }
+
+        .status-open::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 rgba(34, 197, 94, 0.4);
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .reveal-left.visible,
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-hospital-symbol logo-icon"></i>
+                Nova Health Center
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="doctors.html" class="nav-link">Doctors</a></li>
+                    <li><a href="pharmacy.html" class="nav-link">Pharmacy</a></li>
+                    <li><a href="portal.html" class="nav-link">Patient Portal</a></li>
+                    <li><a href="admin-portal.html" class="nav-link">Admin Portal</a></li>
+                    <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-cta">
+                <a href="#appointment-booking" class="btn btn-primary">Book Appointment</a>
+            </div>
+
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Global Status Ticker -->
+    <div
+        style="background: #0f172a; color: white; padding: 12px 0; overflow: hidden; position: relative; z-index: 100; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div style="display: flex; white-space: nowrap; animation: ticker 40s linear infinite;">
+            <span style="margin-right: 4rem; display: flex; align-items: center; gap: 8px;"><span class="pulse"></span>
+                HQ OPERATIONAL: 24/7 ACTIVE</span>
+            <span style="margin-right: 4rem; display: flex; align-items: center; gap: 8px;"><i class="fas fa-ambulance"
+                    style="color: #ef4444;"></i> AMBULANCE FLEET: 5 UNITS READY</span>
+            <span style="margin-right: 4rem; display: flex; align-items: center; gap: 8px;"><i class="fas fa-bolt"
+                    style="color: #fbbf24;"></i> AVG RESPONSE TIME: 4.2 MINS</span>
+            <span style="margin-right: 4rem; display: flex; align-items: center; gap: 8px;"><i class="fas fa-user-md"
+                    style="color: #0ea5e9;"></i> SPECIALISTS ONLINE: 12 ACTIVE</span>
+            <span style="margin-right: 4rem; display: flex; align-items: center; gap: 8px;"><i
+                    class="fas fa-check-circle" style="color: #22c55e;"></i> ISO 9001 VERIFIED FACILITY</span>
+            <!-- Duplicate for seamless loop -->
+            <span style="margin-right: 4rem; display: flex; align-items: center; gap: 8px;"><span class="pulse"></span>
+                HQ OPERATIONAL: 24/7 ACTIVE</span>
+            <span style="margin-right: 4rem; display: flex; align-items: center; gap: 8px;"><i class="fas fa-ambulance"
+                    style="color: #ef4444;"></i> AMBULANCE FLEET: 5 UNITS READY</span>
+            <span style="margin-right: 4rem; display: flex; align-items: center; gap: 8px;"><i class="fas fa-bolt"
+                    style="color: #fbbf24;"></i> AVG RESPONSE TIME: 4.2 MINS</span>
+            <span style="margin-right: 4rem; display: flex; align-items: center; gap: 8px;"><i class="fas fa-user-md"
+                    style="color: #0ea5e9;"></i> SPECIALISTS ONLINE: 12 ACTIVE</span>
+        </div>
+    </div>
+
+    <style>
+        @keyframes ticker {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+
+    <!-- Hero Section -->
+    <section class="contact-hero" style="position: relative; padding: 12rem 0;">
+        <div class="container">
+            <h1
+                style="font-size: 5rem; background: linear-gradient(to right, #fff, #93c5fd); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 2rem; font-weight: 900; letter-spacing: -2px;">
+                Elite Patient Support</h1>
+            <p
+                style="font-size: 1.5rem; max-width: 850px; margin: 0 auto 4rem auto; line-height: 1.6; color: rgba(255,255,255,0.85); font-weight: 400;">
+                Your journey to better health starts with a simple conversation. Our team of world-class specialists is
+                standing by
+                to assist you across all digital and clinical nodes 24 hours a day.</p>
+
+            <!-- Trust Badge Strip -->
+            <div
+                style="display: flex; justify-content: center; gap: 4rem; opacity: 0.6; filter: grayscale(1) invert(1);">
+                <span style="font-size: 0.9rem; font-weight: 800; letter-spacing: 2px;"><i
+                        class="fas fa-certificate"></i> ISO 9001 VERIFIED</span>
+                <span style="font-size: 0.9rem; font-weight: 800; letter-spacing: 2px;"><i
+                        class="fas fa-shield-alt"></i> HIPAA COMPLIANT</span>
+                <span style="font-size: 0.9rem; font-weight: 800; letter-spacing: 2px;"><i class="fas fa-globe"></i>
+                    GLOBAL NETWORK</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Emergency Access Node -->
+    <div onclick="openAmbulanceModal()"
+        style="position: fixed; left: 30px; bottom: 30px; z-index: 1000; cursor: pointer; transition: 0.4s;"
+        onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        <div
+            style="background: #ef4444; color: white; width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 15px 30px rgba(239, 68, 68, 0.4); border: 4px solid white;">
+            <i class="fas fa-ambulance"></i>
+        </div>
+        <div
+            style="position: absolute; left: 75px; top: 50%; transform: translateY(-50%); background: white; color: #ef4444; padding: 8px 16px; border-radius: 50px; font-weight: 800; font-size: 0.8rem; white-space: nowrap; box-shadow: 0 10px 20px rgba(0,0,0,0.1); border: 1px solid #fecaca; pointer-events: none;">
+            EMERGENCY 911</div>
+    </div>
+
+    <!-- Support Channels -->
+    <section class="container support-channels">
+        <div class="channel-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+            <div class="channel-card">
+                <i class="fas fa-headset"></i>
+                <h3>General Inquiries</h3>
+                <p>Contact our reception for basic information and guidance.</p>
+                <div style="font-weight: 700; color: var(--primary-blue); margin-top: 1rem; font-size: 1.2rem;">+252 61
+                    3996319</div>
+            </div>
+            <div class="channel-card">
+                <i class="fas fa-ambulance" style="color: #ef4444;"></i>
+                <h3>
+                    <div class="pulse-red"></div> Emergency Line
+                </h3>
+                <p>Critical care and rapid response trauma unit support.</p>
+                <div style="font-weight: 700; color: #ef4444; margin-top: 1rem; font-size: 1.2rem;">911 (Mogadishu Only)
+                </div>
+                <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; font-weight: 600;">Air Ambulance:
+                    +252 61 7000000</div>
+                <button onclick="openAmbulanceModal()" class="btn-emergency">
+                    <i class="fas fa-truck-medical"></i> Request Ambulance
+                </button>
+            </div>
+            <div class="channel-card"
+                style="background: linear-gradient(135deg, #fffbeb 0%, #fff 100%); border: 1px solid #fcd34d;">
+                <i class="fas fa-concierge-bell" style="color: #d97706; background: #fff;"></i>
+                <h3 style="color: #92400e;">Elite Concierge</h3>
+                <p>Personalized assistance for VIP patients and international guests.</p>
+                <div style="font-weight: 700; color: #d97706; margin-top: 1rem; font-size: 1.2rem;">EXT: 900</div>
+                <div style="font-size: 0.8rem; color: #b45309; margin-top: 0.5rem; font-weight: 600;">Dedicated Liaison
+                    Support</div>
+            </div>
+            <div class="channel-card">
+                <i class="fab fa-whatsapp"></i>
+                <h3>WhatsApp Care</h3>
+                <p>Fast responses for appointment booking via chat.</p>
+                <div style="font-weight: 700; color: #25d366; margin-top: 1rem; font-size: 1.2rem;">+252 61 3996319
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departmental Directory & Operating Hours -->
+    <section class="container" style="padding: 8rem 0;">
+        <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem;">
+            <div>
+                <h2 style="font-size: 2.5rem; margin-bottom: 2.5rem;">Departmental Directory</h2>
+                <div style="display: grid; gap: 1.5rem;">
+                    <!-- Cardiology -->
+                    <div
+                        style="background: white; padding: 2rem; border-radius: 1.5rem; border: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 style="margin: 0; color: #1e293b;">Cardiology Institute</h4>
+                            <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b;">Ground Floor, Wing A</p>
+                        </div>
+                        <div style="font-weight: 800; color: var(--primary-blue);">EXT: 104</div>
+                    </div>
+                    <!-- Oncology -->
+                    <div
+                        style="background: white; padding: 2rem; border-radius: 1.5rem; border: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 style="margin: 0; color: #1e293b;">Cancer Center</h4>
+                            <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b;">Floor 2, Wing B</p>
+                        </div>
+                        <div style="font-weight: 800; color: var(--primary-blue);">EXT: 108</div>
+                    </div>
+                    <!-- Laboratory -->
+                    <div
+                        style="background: white; padding: 2rem; border-radius: 1.5rem; border: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 style="margin: 0; color: #1e293b;">Diagnostic Lab</h4>
+                            <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b;">Basement (Open 24/7)</p>
+                        </div>
+                        <div style="font-weight: 800; color: var(--primary-blue);">EXT: 112</div>
+                    </div>
+                    <!-- Main Office -->
+                    <div
+                        style="background: white; padding: 2rem; border-radius: 1.5rem; border: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 style="margin: 0; color: #1e293b;">HR & Administration</h4>
+                            <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b;">Floor 3, Executive Wing</p>
+                        </div>
+                        <div style="font-weight: 800; color: var(--primary-blue);">EXT: 200</div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                style="background: var(--primary-dark); color: white; padding: 4rem; border-radius: 3rem; position: relative; overflow: hidden;">
+                <h3 style="color: white; font-size: 2rem; margin-bottom: 2rem;">Operating Hours</h3>
+                <div style="display: grid; gap: 1.5rem;">
+                    <div
+                        style="display: flex; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <span>Emergency & ICU</span>
+                        <strong style="color: #4ade80;">24 Hours</strong>
+                    </div>
+                    <div
+                        style="display: flex; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <span>OPD Consultations</span>
+                        <strong>08:30 AM - 09:00 PM</strong>
+                    </div>
+                    <div
+                        style="display: flex; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <span>Diagnostics Lab</span>
+                        <strong style="color: #4ade80;">24 Hours</strong>
+                    </div>
+                    <div
+                        style="display: flex; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <span>Clinical Pharmacy</span>
+                        <strong style="color: #4ade80;">24 Hours</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding-bottom: 1rem;">
+                        <span>Visiting Hours</span>
+                        <strong>04:00 PM - 08:30 PM</strong>
+                    </div>
+                </div>
+
+                <div
+                    style="margin-top: 3rem; background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 1.5rem;">
+                    <h4 style="color: white; margin-bottom: 1rem;"><i class="fas fa-info-circle"
+                            style="color: var(--primary-blue);"></i> Holiday Note</h4>
+                    <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.6;">Our Emergency,
+                        Inpatient, and Pharmacy services remain operational 365 days a year including public holidays.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elite Patient Support Complex -->
+    <section class="support-complex" style="padding: 6rem 0; background: #f8fafc;">
+        <div class="container">
+            <!-- Elite Support Champions -->
+            <div style="margin-bottom: 10rem;" class="reveal">
+                <div style="text-align: center; margin-bottom: 5rem;">
+                    <span class="feature-tag" style="background: #e0f2fe; color: #0369a1; border: none;">The Heart of
+                        Nova</span>
+                    <h2 style="font-size: 3.5rem; margin-top: 1rem; color: #0f172a;">Meet Our Support Champions</h2>
+                    <p style="color: #64748b; font-size: 1.25rem;">Elite patient liaisons dedicated to your personalized
+                        care journey.</p>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem;">
+                    <!-- Champion 1 -->
+                    <div style="background: white; padding: 3rem 2rem; border-radius: 3rem; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 20px 40px rgba(0,0,0,0.03); transition: 0.4s;"
+                        onmouseover="this.style.transform='translateY(-15px)'; this.style.borderColor='var(--primary-blue)'; this.style.boxShadow='0 30px 60px rgba(14, 165, 233, 0.1)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.03)'">
+                        <div style="position: relative; display: inline-block;">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop"
+                                style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 6px solid #f8fafc; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+                            <div
+                                style="position: absolute; bottom: 1.5rem; right: 0; width: 25px; height: 25px; background: #22c55e; border: 4px solid white; border-radius: 50%;">
+                            </div>
+                        </div>
+                        <h3 style="margin-bottom: 0.5rem; color: #1e293b; font-size: 1.4rem;">Hodan Ahmed</h3>
+                        <p
+                            style="font-size: 0.85rem; color: #0ea5e9; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
+                            Concierge Lead</p>
+                        <p style="font-size: 0.9rem; color: #64748b; margin-top: 1rem;">Specialist in International
+                            Patient Logistics.</p>
+                    </div>
+                    <!-- Champion 2 -->
+                    <div style="background: white; padding: 3rem 2rem; border-radius: 3rem; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 20px 40px rgba(0,0,0,0.03); transition: 0.4s;"
+                        onmouseover="this.style.transform='translateY(-15px)'; this.style.borderColor='var(--primary-blue)'; this.style.boxShadow='0 30px 60px rgba(14, 165, 233, 0.1)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.03)'">
+                        <div style="position: relative; display: inline-block;">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=200&auto=format&fit=crop"
+                                style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 6px solid #f8fafc; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+                            <div
+                                style="position: absolute; bottom: 1.5rem; right: 0; width: 25px; height: 25px; background: #22c55e; border: 4px solid white; border-radius: 50%;">
+                            </div>
+                        </div>
+                        <h3 style="margin-bottom: 0.5rem; color: #1e293b; font-size: 1.4rem;">Mohamed Ali</h3>
+                        <p
+                            style="font-size: 0.85rem; color: #0ea5e9; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
+                            Finance Liaison</p>
+                        <p style="font-size: 0.9rem; color: #64748b; margin-top: 1rem;">Expert in Insurance Claims &
+                            Billing Clarity.</p>
+                    </div>
+                    <!-- Champion 3 -->
+                    <div style="background: white; padding: 3rem 2rem; border-radius: 3rem; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 20px 40px rgba(0,0,0,0.03); transition: 0.4s;"
+                        onmouseover="this.style.transform='translateY(-15px)'; this.style.borderColor='var(--primary-blue)'; this.style.boxShadow='0 30px 60px rgba(14, 165, 233, 0.1)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.03)'">
+                        <div style="position: relative; display: inline-block;">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop"
+                                style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 6px solid #f8fafc; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+                            <div
+                                style="position: absolute; bottom: 1.5rem; right: 0; width: 25px; height: 25px; background: #f59e0b; border: 4px solid white; border-radius: 50%;">
+                            </div>
+                        </div>
+                        <h3 style="margin-bottom: 0.5rem; color: #1e293b; font-size: 1.4rem;">Zahra Ismail</h3>
+                        <p
+                            style="font-size: 0.85rem; color: #0ea5e9; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
+                            Lab Coordinator</p>
+                        <p style="font-size: 0.9rem; color: #64748b; margin-top: 1rem;">Direct support for Urgent
+                            Clinical Diagnostics.</p>
+                    </div>
+                    <!-- Champion 4 -->
+                    <div style="background: white; padding: 3rem 2rem; border-radius: 3rem; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 20px 40px rgba(0,0,0,0.03); transition: 0.4s;"
+                        onmouseover="this.style.transform='translateY(-15px)'; this.style.borderColor='var(--primary-blue)'; this.style.boxShadow='0 30px 60px rgba(14, 165, 233, 0.1)'"
+                        onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.03)'">
+                        <div style="position: relative; display: inline-block;">
+                            <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=200&auto=format&fit=crop"
+                                style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 6px solid #f8fafc; box-shadow: 0 10px 20px rgba(0,0,0,0.05);">
+                            <div
+                                style="position: absolute; bottom: 1.5rem; right: 0; width: 25px; height: 25px; background: #22c55e; border: 4px solid white; border-radius: 50%;">
+                            </div>
+                        </div>
+                        <h3 style="margin-bottom: 0.5rem; color: #1e293b; font-size: 1.4rem;">Abdirahman Keyd</h3>
+                        <p
+                            style="font-size: 0.85rem; color: #0ea5e9; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
+                            Tech Support Lead</p>
+                        <p style="font-size: 0.9rem; color: #64748b; margin-top: 1rem;">Mastering the Digital Patient
+                            Experience.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Command Center -->
+            <div style="text-align: center; margin-bottom: 6rem;">
+                <span
+                    style="color: #6366f1; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 1rem;">Xarunta
+                    Adeegga Tooska ah</span>
+                <h2 style="font-size: 4rem; color: #0f172a; margin-bottom: 1.5rem; line-height: 1.1;">Direct Support Hub
+                </h2>
+                <p style="color: #64748b; max-width: 800px; margin: 0 auto; font-size: 1.25rem;">High-impact interactive
+                    channels for specific administrative and clinical needs.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-bottom: 8rem;">
+                <!-- Node 1 -->
+                <div style="background: white; padding: 4rem; border-radius: 3.5rem; text-align: center; border: 1px solid #e2e8f0; transition: 0.4s; position: relative; overflow: hidden;"
+                    class="reveal"
+                    onmouseover="this.style.transform='translateY(-10px)'; this.style.borderColor='#0ea5e9'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0'">
+                    <div
+                        style="width: 80px; height: 80px; background: #e0f2fe; color: #0ea5e9; border-radius: 2rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 2.5rem auto;">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 style="color: #1e293b; margin-bottom: 1rem; font-size: 1.8rem;">Billing & Finance</h3>
+                    <p style="color: #64748b; font-size: 1rem; line-height: 1.6; margin-bottom: 2.5rem;">Queries
+                        regarding invoices, insurance, and medical payments (Xarunta Lacagaha).</p>
+                    <button class="btn btn-primary"
+                        style="width: 100%; border-radius: 1.5rem; padding: 1.25rem; font-weight: 800;">Contact Finance
+                        Node</button>
+                </div>
+                <!-- Node 2 -->
+                <div style="background: white; padding: 4rem; border-radius: 3.5rem; text-align: center; border: 1px solid #e2e8f0; transition: 0.4s; position: relative; overflow: hidden;"
+                    class="reveal"
+                    onmouseover="this.style.transform='translateY(-10px)'; this.style.borderColor='#6366f1'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0'">
+                    <div
+                        style="width: 80px; height: 80px; background: #e0e7ff; color: #6366f1; border-radius: 2rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 2.5rem auto;">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h3 style="color: #1e293b; margin-bottom: 1rem; font-size: 1.8rem;">Lab Assistance</h3>
+                    <p style="color: #64748b; font-size: 1rem; line-height: 1.6; margin-bottom: 2.5rem;">Track
+                        specialized test results or schedule advanced clinical diagnostics (Xarunta Shaybaarka).</p>
+                    <button class="btn btn-primary"
+                        style="width: 100%; border-radius: 1.5rem; padding: 1.25rem; font-weight: 800; background: #6366f1;">Contact
+                        Research Node</button>
+                </div>
+                <!-- Node 3 -->
+                <div style="background: white; padding: 4rem; border-radius: 3.5rem; text-align: center; border: 1px solid #e2e8f0; transition: 0.4s; position: relative; overflow: hidden;"
+                    class="reveal"
+                    onmouseover="this.style.transform='translateY(-10px)'; this.style.borderColor='#0f172a'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0'">
+                    <div
+                        style="width: 80px; height: 80px; background: #f1f5f9; color: #0f172a; border-radius: 2rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 2.5rem auto;">
+                        <i class="fas fa-mobile-screen"></i>
+                    </div>
+                    <h3 style="color: #1e293b; margin-bottom: 1rem; font-size: 1.8rem;">Digital Support</h3>
+                    <p style="color: #64748b; font-size: 1rem; line-height: 1.6; margin-bottom: 2.5rem;">Help with Admin
+                        Portal login or remote monitoring health setup (Xarunta IT-ga).</p>
+                    <button class="btn btn-primary"
+                        style="width: 100%; border-radius: 1.5rem; padding: 1.25rem; font-weight: 800; background: #0f172a;">Contact
+                        Systems Node</button>
+                </div>
+            </div>
+
+            <!-- Live Facility Monitor -->
+            <div style="background: white; padding: 6rem; border-radius: 4rem; border: 1px solid #e2e8f0; box-shadow: 0 40px 80px rgba(0,0,0,0.02);"
+                class="reveal">
+                <div style="display: flex; justify-content: space-between; align-items: end; margin-bottom: 5rem;">
+                    <div>
+                        <span
+                            style="color: #ef4444; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 10px;">
+                            <span class="pulse-red"></span> LIVE INFRASTRUCTURE MONITOR
+                        </span>
+                        <h2 style="font-size: 3rem; color: #0f172a; margin-top: 1rem;">Real-time Facility Metrics</h2>
+                        <p style="color: #64748b; font-size: 1.1rem; margin-top: 0.5rem;">Current operational status
+                            from Nova Health HQ, Mogadishu.</p>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem;">
+                    <div style="text-align: center; border-right: 1px solid #f1f5f9;">
+                        <div style="font-size: 3.5rem; font-weight: 900; color: #1e293b; line-height: 1;">88%</div>
+                        <p
+                            style="color: #64748b; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; margin-top: 1rem; letter-spacing: 1px;">
+                            Capacity Load</p>
+                    </div>
+                    <div style="text-align: center; border-right: 1px solid #f1f5f9;">
+                        <div style="font-size: 3.5rem; font-weight: 900; color: #16a34a; line-height: 1;">08m</div>
+                        <p
+                            style="color: #64748b; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; margin-top: 1rem; letter-spacing: 1px;">
+                            Avg Processing</p>
+                    </div>
+                    <div style="text-align: center; border-right: 1px solid #f1f5f9;">
+                        <div style="font-size: 3.5rem; font-weight: 900; color: #0ea5e9; line-height: 1;">23.5°</div>
+                        <p
+                            style="color: #64748b; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; margin-top: 1rem; letter-spacing: 1px;">
+                            Clinical Temp</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3.5rem; font-weight: 900; color: #ef4444; line-height: 1;">05</div>
+                        <p
+                            style="color: #64748b; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; margin-top: 1rem; letter-spacing: 1px;">
+                            Ready Fleet</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Neural Support Sync & Global Presence -->
+            <div style="margin-top: 10rem; position: relative;" class="reveal">
+                <div
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 6rem; border-radius: 4rem; color: white; overflow: hidden;">
+                    <!-- Animated Gradient Background -->
+                    <div
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.2; background: radial-gradient(circle at 30% 20%, #0ea5e9 0%, transparent 50%), radial-gradient(circle at 80% 80%, #6366f1 0%, transparent 50%); pointer-events: none;">
+                    </div>
+
+                    <div>
+                        <span
+                            style="color: #60a5fa; font-weight: 800; text-transform: uppercase; letter-spacing: 3px;">Beyond
+                            Connectivity</span>
+                        <h2 style="font-size: 3.5rem; color: white; margin: 1.5rem 0; line-height: 1.1;">Neural Support
+                            <span style="color: #0ea5e9;">Synchronization</span>
+                        </h2>
+                        <p style="color: #94a3b8; font-size: 1.2rem; line-height: 1.8; margin-bottom: 3rem;">We utilize
+                            fiber-optic data bridging and AI-driven triage to ensure your medical inquiry is routed to
+                            the exact specialist in real-time, matching your condition with precision.</p>
+
+                        <div style="display: grid; gap: 2rem;">
+                            <div style="display: flex; gap: 1.5rem; align-items: center;">
+                                <div
+                                    style="width: 50px; height: 50px; background: rgba(14, 165, 233, 0.1); border: 1px solid #0ea5e9; border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: #0ea5e9;">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <h4 style="margin: 0; font-size: 1.1rem;">AI-Driven Triage Routing</h4>
+                            </div>
+                            <div style="display: flex; gap: 1.5rem; align-items: center;">
+                                <div
+                                    style="width: 50px; height: 50px; background: rgba(99, 102, 241, 0.1); border: 1px solid #6366f1; border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: #6366f1;">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <h4 style="margin: 0; font-size: 1.1rem;">Multi-Cloud Diagnostics Link</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="position: relative;">
+                        <!-- Mockup representing a global network -->
+                        <div
+                            style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 3rem; padding: 3rem; backdrop-filter: blur(10px);">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                                <div
+                                    style="font-weight: 800; font-size: 0.9rem; color: #0ea5e9; display: flex; align-items: center; gap: 10px;">
+                                    <span class="pulse"></span> GLOBAL NODES ACTIVE
+                                </div>
+                                <i class="fas fa-globe-africa" style="font-size: 1.5rem; opacity: 0.5;"></i>
+                            </div>
+                            <div style="display: grid; gap: 1.5rem;">
+                                <div
+                                    style="padding: 1rem; background: rgba(255,255,255,0.03); border-radius: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 0.9rem;">Mogadishu Central Node</span>
+                                    <span style="color: #22c55e;">CONNECTED</span>
+                                </div>
+                                <div
+                                    style="padding: 1rem; background: rgba(255,255,255,0.03); border-radius: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 0.9rem;">Global Specialist Bridge</span>
+                                    <span style="color: #22c55e;">CONNECTED</span>
+                                </div>
+                                <div
+                                    style="padding: 1rem; background: rgba(255,255,255,0.03); border-radius: 1rem; display: flex; justify-content: space-between; align-items: center; opacity: 0.5;">
+                                    <span style="font-size: 0.9rem;">Remote Satellite Backup</span>
+                                    <span style="color: #64748b;">STANDBY</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Contact Grid -->
+    <section class="contact-grid-section" style="padding: 10rem 0;">
+        <div class="container">
+            <div class="contact-grid" style="grid-template-columns: 1fr; max-width: 1000px; margin: 0 auto;">
+                <div
+                    style="background: rgba(255,255,255,0.7); backdrop-filter: blur(20px); display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; padding: 6rem; border-radius: 5rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 50px 100px -20px rgba(15, 23, 42, 0.05);">
+                    <div style="text-align: center; position: relative;" class="reveal">
+                        <div
+                            style="width: 100px; height: 100px; background: white; color: var(--primary-blue); border-radius: 3rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 2.5rem auto; box-shadow: 0 15px 30px rgba(14, 165, 233, 0.1); border: 1px solid #e0f2fe;">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h4
+                            style="color: #64748b; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: 2px;">
+                            Global Phone</h4>
+                        <p style="font-weight: 900; font-size: 1.25rem; color: #0f172a;">+252 61 3996319</p>
+                        <span
+                            style="font-size: 0.75rem; color: #10b981; font-weight: 700; display: block; margin-top: 10px;">AVERAGE
+                            PICKUP: 45 SECS</span>
+                    </div>
+
+                    <div style="text-align: center; position: relative;" class="reveal">
+                        <div
+                            style="width: 100px; height: 100px; background: white; color: #ef4444; border-radius: 3rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 2.5rem auto; box-shadow: 0 15px 30px rgba(239, 68, 68, 0.1); border: 1px solid #fee2e2;">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4
+                            style="color: #64748b; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: 2px;">
+                            Secure Email</h4>
+                        <p style="font-weight: 900; font-size: 1.25rem; color: #0f172a;">care@novahealth.so</p>
+                        <span
+                            style="font-size: 0.75rem; color: #10b981; font-weight: 700; display: block; margin-top: 10px;">AVAILABILITY:
+                            24/7 ENCRYPTED</span>
+                    </div>
+
+                    <div style="text-align: center; position: relative;" class="reveal">
+                        <div
+                            style="width: 100px; height: 100px; background: white; color: #22c55e; border-radius: 3rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 2.5rem auto; box-shadow: 0 15px 30px rgba(34, 197, 94, 0.1); border: 1px solid #dcfce7;">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4
+                            style="color: #64748b; text-transform: uppercase; font-size: 0.9rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: 2px;">
+                            HQ Location</h4>
+                        <p style="font-weight: 900; font-size: 1.25rem; color: #0f172a;">KM4 Center, Mogadishu</p>
+                        <span
+                            style="font-size: 0.75rem; color: #10b981; font-weight: 700; display: block; margin-top: 10px;">PARKING:
+                            PRIVATE SECURE 24/7</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Send Message Form Section -->
+    <!-- Send Message Form Section - Premium Glass Design -->
+    <section class="message-section"
+        style="padding: 8rem 0; background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); position: relative; overflow: hidden;">
+
+        <!-- Decorative Background Elements -->
+        <div
+            style="position: absolute; top: -100px; left: -100px; width: 400px; height: 400px; background: rgba(14, 165, 233, 0.1); border-radius: 50%; filter: blur(50px);">
+        </div>
+        <div
+            style="position: absolute; bottom: -100px; right: -100px; width: 400px; height: 400px; background: rgba(251, 191, 36, 0.1); border-radius: 50%; filter: blur(50px);">
+        </div>
+
+        <div class="container" style="position: relative; z-index: 2;">
+            <div
+                style="background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); border-radius: 3rem; padding: 5rem; border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 50px 100px -20px rgba(15, 23, 42, 0.05); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;">
+
+                <div class="reveal-left">
+                    <span class="feature-tag"
+                        style="background: #fffbeb; color: #d97706; border: 1px solid #fcd34d;">24/7 Digital
+                        Support</span>
+                    <h2
+                        style="font-size: 3.5rem; margin: 1.5rem 0; color: #1e293b; line-height: 1.1; font-weight: 800;">
+                        Let’s Start a <br> <span
+                            style="background: linear-gradient(to right, #0ea5e9, #14b8a6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Conversation.</span>
+                    </h2>
+                    <p style="color: #64748b; font-size: 1.15rem; line-height: 1.8; margin-bottom: 3rem;">
+                        Ma qabtaa su'aalo ama ma u baahan tahay talo bixin gaar ah? Nova Health waxay had iyo jeer
+                        diyaar u tahay inay ku dhageysato. Qaybtan waxaa loo sameeyay inay kuu fududeyso inaad nalla soo
+                        xiriirto si toos ah, iyadoo fariintaadu ay si xog-qarin leh ku gaarayso maamulka sare iyo kooxda
+                        takhasuska leh.
+                    </p>
+
+                    <div style="display: grid; gap: 2rem;">
+                        <div style="display: flex; gap: 1.5rem; align-items: center;">
+                            <div
+                                style="width: 55px; height: 55px; background: white; border-radius: 1.25rem; display: flex; align-items: center; justify-content: center; color: #0ea5e9; box-shadow: 0 10px 20px rgba(14, 165, 233, 0.15); font-size: 1.4rem;">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0 0 5px 0; color: #1e293b; font-size: 1.1rem;">Lightning Fast Support
+                                </h4>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Typical response time: < 2
+                                        Hours</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1.5rem; align-items: center;">
+                            <div
+                                style="width: 55px; height: 55px; background: white; border-radius: 1.25rem; display: flex; align-items: center; justify-content: center; color: #f59e0b; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.15); font-size: 1.4rem;">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0 0 5px 0; color: #1e293b; font-size: 1.1rem;">Secure & Confidential
+                                </h4>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Encrypted end-to-end
+                                    communication</p>
+                            </div>
+                        </div>
+                        <!-- Extra Node Added -->
+                        <div style="display: flex; gap: 1.5rem; align-items: center;">
+                            <div
+                                style="width: 55px; height: 55px; background: white; border-radius: 1.25rem; display: flex; align-items: center; justify-content: center; color: #10b981; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.15); font-size: 1.4rem;">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0 0 5px 0; color: #1e293b; font-size: 1.1rem;">Expert Triage</h4>
+                                <p style="margin: 0; color: #64748b; font-size: 0.95rem;">Messages reviewed by senior
+                                    medical staff</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal-right">
+                    <style>
+                        /* Modern Input Styles for "Marabi" Design */
+                        .modern-form-group {
+                            position: relative;
+                            margin-bottom: 2rem;
+                        }
+
+                        .modern-input {
+                            width: 100%;
+                            padding: 1.25rem 0;
+                            font-size: 1.1rem;
+                            color: #1e293b;
+                            background: transparent;
+                            border: none;
+                            border-bottom: 2px solid #e2e8f0;
+                            border-radius: 0;
+                            transition: all 0.3s ease;
+                        }
+
+                        .modern-input:focus {
+                            outline: none;
+                            border-bottom-color: #0ea5e9;
+                        }
+
+                        .modern-label {
+                            position: absolute;
+                            top: 1.25rem;
+                            left: 0;
+                            font-size: 1.1rem;
+                            color: #94a3b8;
+                            pointer-events: none;
+                            transition: 0.3s ease all;
+                        }
+
+                        .modern-input:focus~.modern-label,
+                        .modern-input:not(:placeholder-shown)~.modern-label {
+                            top: -0.5rem;
+                            font-size: 0.85rem;
+                            color: #0ea5e9;
+                            font-weight: 700;
+                        }
+
+                        .btn-premium-gold {
+                            width: 100%;
+                            padding: 1.5rem;
+                            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+                            color: #1e293b;
+                            font-weight: 800;
+                            border: none;
+                            border-radius: 1.5rem;
+                            font-size: 1.1rem;
+                            cursor: pointer;
+                            box-shadow: 0 20px 40px rgba(245, 158, 11, 0.25);
+                            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 10px;
+                        }
+
+                        .btn-premium-gold:hover {
+                            transform: translateY(-5px) scale(1.02);
+                            box-shadow: 0 30px 60px rgba(245, 158, 11, 0.35);
+                        }
+                    </style>
+
+                    <div id="contact-success-message"
+                        style="display: none; background: white; padding: 4rem; border-radius: 2.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255,255,255,0.8); text-align: center; height: 100%; align-items: center; justify-content: center; flex-direction: column;">
+                        <div
+                            style="width: 80px; height: 80px; background: #ecfdf5; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem auto; color: #10b981; font-size: 2.5rem; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.15);">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h3 style="font-size: 2rem; color: #1e293b; margin-bottom: 1rem;">Message Sent!</h3>
+                        <p style="color: #64748b; font-size: 1.1rem; line-height: 1.6; margin-bottom: 2.5rem;">
+                            Thank you for reaching out. A member of our elite support team will review your message and
+                            respond within 2 hours.
+                        </p>
+                        <button
+                            onclick="document.getElementById('contact-success-message').style.display = 'none'; document.getElementById('premium-contact-form').style.display = 'block'; document.getElementById('premium-contact-form').reset();"
+                            class="btn-premium-gold"
+                            style="width: auto; padding: 1rem 2.5rem; margin: 0 auto; font-size: 1rem;">
+                            Send Another Message
+                        </button>
+                    </div>
+
+                    <form id="premium-contact-form"
+                        style="background: white; padding: 4rem; border-radius: 2.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08); border: 1px solid rgba(255,255,255,0.8);">
+                        <div class="modern-form-group">
+                            <input type="text" class="modern-input" placeholder=" " required>
+                            <label class="modern-label">Full Name</label>
+                        </div>
+
+                        <div class="modern-form-group">
+                            <input type="email" class="modern-input" placeholder=" " required>
+                            <label class="modern-label">Email Address</label>
+                        </div>
+
+                        <div class="modern-form-group">
+                            <select class="modern-input" style="cursor: pointer;" required>
+                                <option value="" disabled selected></option>
+                                <option>General Inquiry</option>
+                                <option>Billing & Insurance</option>
+                                <option>Doctor Feedback</option>
+                                <option>Technical Support</option>
+                            </select>
+                            <label class="modern-label">Topic</label>
+                        </div>
+
+                        <div class="modern-form-group">
+                            <textarea class="modern-input" placeholder=" " style="resize: none; min-height: 100px;"
+                                required></textarea>
+                            <label class="modern-label">How can we help?</label>
+                        </div>
+
+                        <button type="submit" class="btn-premium-gold">
+                            Send Secure Message <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Digital Showcase -->
+    <section class="digital-showcase">
+        <div class="container">
+            <div class="showcase-grid">
+                <div class="showcase-content reveal">
+                    <span class="feature-tag">The Future of Care</span>
+                    <h2>A Fully Integrated Digital Hospital</h2>
+                    <p>We are redefining medical care with a state-of-the-art digital ecosystem. From AI-assisted
+                        diagnostics to seamless patient monitoring, our digital hospital ensures you are always
+                        connected to world-class health services.</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start;">
+                            <div
+                                style="width: 45px; height: 45px; background: #e0f2fe; color: #0ea5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div>
+                                <strong
+                                    style="display: block; color: #1e293b; font-size: 1.1rem; margin-bottom: 0.25rem;">AI-Powered
+                                    Diagnostics</strong>
+                                <span style="font-size: 0.95rem; color: #64748b;">Advanced algorithms for faster,
+                                    more
+                                    accurate disease detection and treatment planning.</span>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start;">
+                            <div
+                                style="width: 45px; height: 45px; background: #e0f2fe; color: #0ea5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div>
+                                <strong
+                                    style="display: block; color: #1e293b; font-size: 1.1rem; margin-bottom: 0.25rem;">24/7
+                                    Tele-Medicine</strong>
+                                <span style="font-size: 0.95rem; color: #64748b;">Connect with top specialists
+                                    instantly
+                                    via HD video for consultations and follow-ups.</span>
+                            </div>
+                        </li>
+                        <li style="display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start;">
+                            <div
+                                style="width: 45px; height: 45px; background: #e0f2fe; color: #0ea5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div>
+                                <strong
+                                    style="display: block; color: #1e293b; font-size: 1.1rem; margin-bottom: 0.25rem;">Remote
+                                    Smart Monitoring</strong>
+                                <span style="font-size: 0.95rem; color: #64748b;">Integrated IoT wearable support
+                                    for
+                                    real-time tracking of your vitals from home.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mockup-wrapper reveal">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop"
+                        class="laptop-mockup" alt="Digital Hospital Interface" style="filter: contrast(1.1);">
+                    <div class="floating-badge">
+                        <div
+                            style="width: 55px; height: 55px; background: #22c55e; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 800; color: #1e293b; font-size: 1.1rem;">Smart Connected</div>
+                            <div style="font-size: 0.85rem; color: #64748b;">Unified Health Ecosystem</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ELITE AMENITIES & SPECIAL SERVICES - REDESIGNED -->
+    <section class="luxury-amenities"
+        style="padding: 10rem 0; background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%); position: relative;">
+        <!-- Subtle Pattern Overlay -->
+        <div
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.4; background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 40px 40px; pointer-events: none;">
+        </div>
+
+        <div class="container" style="position: relative; z-index: 2;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center;">
+
+                <!-- Left Content: Amenities -->
+                <div class="reveal">
+                    <span class="feature-tag"
+                        style="background: #fffbeb; color: #b45309; border: 1px solid #fcd34d;">The Nova
+                        Experience</span>
+                    <h2 style="font-size: 3.5rem; margin: 1.5rem 0 2rem 0; color: #1e293b; line-height: 1.1;">
+                        World-Class <span style="color: #0ea5e9;">Amenities</span> <br> for Your Deepest Comfort
+                    </h2>
+                    <p style="color: #64748b; font-size: 1.2rem; line-height: 1.8; margin-bottom: 4rem;">
+                        We believe that true healing begins in an environment of absolute tranquility. From our private
+                        VIP recovery suites to personalized concierge services, every detail is curated for your peace
+                        of mind.
+                    </p>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;">
+                        <!-- Amenity Item 1 -->
+                        <div style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                            <div
+                                style="width: 50px; height: 50px; border-radius: 1rem; background: #e0f2fe; color: #0284c7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.25rem; box-shadow: 0 4px 6px -1px rgba(14, 165, 233, 0.1);">
+                                <i class="fas fa-couch"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0 0 0.25rem 0; color: #1e293b; font-size: 1.1rem;">VIP Recovery
+                                    Suites</h4>
+                                <span style="font-size: 0.9rem; color: #64748b;">Private, spacious rooms tailored for
+                                    relaxation.</span>
+                            </div>
+                        </div>
+
+                        <!-- Amenity Item 2 -->
+                        <div style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                            <div
+                                style="width: 50px; height: 50px; border-radius: 1rem; background: #fef3c7; color: #d97706; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.25rem; box-shadow: 0 4px 6px -1px rgba(245, 158, 11, 0.1);">
+                                <i class="fas fa-parking"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0 0 0.25rem 0; color: #1e293b; font-size: 1.1rem;">Valet Parking</h4>
+                                <span style="font-size: 0.9rem; color: #64748b;">Complementary service for all
+                                    patients.</span>
+                            </div>
+                        </div>
+
+                        <!-- Amenity Item 3 -->
+                        <div style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                            <div
+                                style="width: 50px; height: 50px; border-radius: 1rem; background: #f0fdf4; color: #16a34a; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.25rem; box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.1);">
+                                <i class="fas fa-wifi"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0 0 0.25rem 0; color: #1e293b; font-size: 1.1rem;">Ultra-Fast 5G</h4>
+                                <span style="font-size: 0.9rem; color: #64748b;">Stay connected with high-speed
+                                    internet.</span>
+                            </div>
+                        </div>
+
+                        <!-- Amenity Item 4 -->
+                        <div style="display: flex; gap: 1.25rem; align-items: flex-start;">
+                            <div
+                                style="width: 50px; height: 50px; border-radius: 1rem; background: #fae8ff; color: #a855f7; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.25rem; box-shadow: 0 4px 6px -1px rgba(168, 85, 247, 0.1);">
+                                <i class="fas fa-mug-hot"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0 0 0.25rem 0; color: #1e293b; font-size: 1.1rem;">Gourmet Cafe</h4>
+                                <span style="font-size: 0.9rem; color: #64748b;">Healthy, chef-prepared meals &
+                                    coffee.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Content: Special Services Card -->
+                <div class="reveal" style="position: relative;">
+                    <!-- Floating Card Effect -->
+                    <div
+                        style="background: white; border-radius: 2.5rem; padding: 4rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); border: 1px solid rgba(226, 232, 240, 0.8); position: relative; overflow: hidden;">
+
+                        <!-- Top Accent Bar -->
+                        <div
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(to right, #0ea5e9, #22c55e);">
+                        </div>
+
+                        <h3
+                            style="font-size: 2rem; margin-bottom: 2.5rem; color: #1e293b; font-weight: 800; display: flex; align-items: center; gap: 1rem;">
+                            <span
+                                style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; display: inline-block;"></span>
+                            Adeegyada Gaarka ah
+                        </h3>
+
+                        <div style="display: grid; gap: 2rem;">
+                            <!-- Service 1 -->
+                            <div onclick="openHomeVisitModal()"
+                                style="padding: 1.5rem; background: #f8fafc; border-radius: 1.5rem; display: flex; gap: 1.5rem; align-items: center; border: 1px solid #f1f5f9; transition: all 0.3s ease; cursor: pointer;"
+                                onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)'"
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                <div
+                                    style="width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #0ea5e9; font-size: 1.25rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                                <div>
+                                    <h4 style="margin: 0 0 4px 0; color: #1e293b; font-size: 1.1rem;">Booqashada Guriga
+                                    </h4>
+                                    <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Dhakhtarkaaga oo gurigaaga
+                                        kuugu imanaya.</p>
+                                </div>
+                            </div>
+
+                            <!-- Service 2 -->
+                            <div onclick="openAmbulanceModal()"
+                                style="padding: 1.5rem; background: #fef2f2; border-radius: 1.5rem; display: flex; gap: 1.5rem; align-items: center; border: 1px solid #fee2e2; transition: all 0.3s ease; cursor: pointer;"
+                                onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 20px rgba(239, 68, 68, 0.15)'"
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                <div
+                                    style="width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #ef4444; font-size: 1.25rem; box-shadow: 0 4px 6px rgba(239, 68, 68, 0.1);">
+                                    <i class="fas fa-plane"></i>
+                                </div>
+                                <div>
+                                    <h4 style="margin: 0 0 4px 0; color: #1e293b; font-size: 1.1rem;">Diyaaradda
+                                        Caafimaadka</h4>
+                                    <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Gurmadka degdega ah ee (Air
+                                        Ambulance).</p>
+                                </div>
+                            </div>
+
+                            <!-- Service 3 -->
+                            <div onclick="openVIPModal()"
+                                style="padding: 1.5rem; background: #f0fdf4; border-radius: 1.5rem; display: flex; gap: 1.5rem; align-items: center; border: 1px solid #dcfce7; transition: all 0.3s ease; cursor: pointer;"
+                                onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 20px rgba(22, 163, 74, 0.15)'"
+                                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                <div
+                                    style="width: 50px; height: 50px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #16a34a; font-size: 1.25rem; box-shadow: 0 4px 6px rgba(22, 163, 74, 0.1);">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div>
+                                    <h4 style="margin: 0 0 4px 0; color: #1e293b; font-size: 1.1rem;">Adeegga VIP-da
+                                    </h4>
+                                    <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Daryeel gaar ah iyo qolal
+                                        VIP ah oo heer caalami ah.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Enhanced Appointment Booking Section -->
+    <section id="appointment-booking" class="booking-section">
+        <div class="container">
+            <div class="booking-header reveal">
+                <span class="feature-tag">Priority Access</span>
+                <h2>Book Your World-Class Care</h2>
+                <p>Experience seamless medical scheduling with our elite booking system. Choose your specialist,
+                    pick
+                    a time, and prepare for a transformational health journey.</p>
+                <div style="margin-top: 3rem;">
+                    <button id="reveal-booking-btn" class="premium-booking-btn"
+                        style="max-width: 400px; margin: 0 auto;">
+                        Schedule Your Visit Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="booking-container reveal" id="all-booking-content"
+                style="display: none; transform: translateY(50px); opacity: 0; transition: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);">
+
+                <div class="booking-form-area">
+                    <form id="appointment-form">
+                        <!-- Patient Info Section -->
+                        <div class="form-section-header">
+                            <div class="section-icon"><i class="fas fa-user-shield"></i></div>
+                            <div class="section-title">
+                                <h3>Patient Details</h3>
+                                <p>Identification and personal profile</p>
+                            </div>
+                        </div>
+
+                        <div class="input-grid">
+                            <div class="floating-label-group">
+                                <input type="text" class="floating-input" placeholder=" " required>
+                                <label class="floating-label">Enter Full Name</label>
+                            </div>
+                            <div class="floating-label-group">
+                                <input type="date" class="floating-input" placeholder=" " required>
+                                <label class="floating-label">Date of Birth</label>
+                            </div>
+                        </div>
+
+                        <div class="input-grid">
+                            <div class="floating-label-group">
+                                <select class="floating-input" required>
+                                    <option value="" disabled selected> </option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <label class="floating-label">Select Gender</label>
+                            </div>
+                            <div class="floating-label-group">
+                                <input type="tel" class="floating-input" placeholder=" " required>
+                                <label class="floating-label">Phone Number</label>
+                            </div>
+                        </div>
+
+                        <!-- Appointment Preferences -->
+                        <div class="form-section-header" style="margin-top: 5rem;">
+                            <div class="section-icon"><i class="fas fa-stethoscope"></i></div>
+                            <div class="section-title">
+                                <h3>Specialty Selection</h3>
+                                <p>Choose the care you need</p>
+                            </div>
+                        </div>
+
+                        <div class="input-grid">
+                            <div class="floating-label-group">
+                                <select class="floating-input" required>
+                                    <option value="" disabled selected> </option>
+                                    <option>General Practice</option>
+                                    <option>Cardiology</option>
+                                    <option>Pediatrics</option>
+                                    <option>Orthopedics</option>
+                                    <option>Neurology</option>
+                                </select>
+                                <label class="floating-label">Medical Department</label>
+                            </div>
+                            <div class="floating-label-group">
+                                <select class="floating-input" required>
+                                    <option value="" disabled selected> </option>
+                                    <option>No preference</option>
+                                    <option>Dr. Sahra Kaahin</option>
+                                    <option>Dr. Maxamed Jaamac</option>
+                                    <option>Dr. Nimco Cabdi</option>
+                                </select>
+                                <label class="floating-label">Lead Specialist</label>
+                            </div>
+                        </div>
+
+                        <!-- Date & Time Selection -->
+                        <div class="form-section-header" style="margin-top: 5rem;">
+                            <div class="section-icon"><i class="fas fa-calendar-check"></i></div>
+                            <div class="section-title">
+                                <h3>Time Configuration</h3>
+                                <p>Sat-Fri Working Week</p>
+                            </div>
+                        </div>
+
+                        <div class="premium-calendar">
+                            <div class="calendar-nav">
+                                <h4 id="current-month-year">January 2026</h4>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button type="button" class="nav-btn" onclick="changeMonth(-1)"><i
+                                            class="fas fa-chevron-left"></i></button>
+                                    <button type="button" class="nav-btn" onclick="changeMonth(1)"><i
+                                            class="fas fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="cal-grid" id="calendar-days">
+                                <!-- Calendar days will be generated by JS -->
+                            </div>
+                        </div>
+
+                        <div class="time-picker-area">
+                            <div class="ampm-switch" id="ampm-switch" data-active="AM">
+                                <div class="ampm-slider"></div>
+                                <button type="button" class="ampm-btn" onclick="toggleAMPM('AM')">AM
+                                    SESSIONS</button>
+                                <button type="button" class="ampm-btn" onclick="toggleAMPM('PM')">PM
+                                    SESSIONS</button>
+                            </div>
+
+                            <div class="slots-grid" id="time-slots">
+                                <!-- Time slots will be generated by JS -->
+                            </div>
+                        </div>
+
+                        <button type="submit" class="premium-booking-btn">
+                            Confirm Global Appointment <i class="fas fa-check-circle"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="booking-info-area">
+                    <div style="margin-bottom: 5rem;">
+                        <h2 style="font-size: 2.5rem; line-height: 1.1; margin-bottom: 1.5rem;">Why Nova Health?
+                        </h2>
+                        <p style="color: #64748b; font-size: 1.1rem;">We don't just book appointments; we manage
+                            your
+                            health ecosystem with precision and care.</p>
+                    </div>
+
+                    <div class="booking-benefit">
+                        <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="benefit-text">
+                            <h4>Encrypted Patient Files</h4>
+                            <p>Military-grade encryption for all medical records and digital footprints.</p>
+                        </div>
+                    </div>
+
+                    <div class="booking-benefit">
+                        <div class="benefit-icon"><i class="fas fa-clock"></i></div>
+                        <div class="benefit-text">
+                            <h4>Zero Waiting Time</h4>
+                            <p>Our AI-optimized scheduling ensures you are seen within 5 minutes of arrival.</p>
+                        </div>
+                    </div>
+
+                    <div class="booking-benefit">
+                        <div class="benefit-icon"><i class="fas fa-sync"></i></div>
+                        <div class="benefit-text">
+                            <h4>Cloud Integration</h4>
+                            <p>Access your appointment status and reports from anywhere on the planet.</p>
+                        </div>
+                    </div>
+
+                    <div
+                        style="margin-top: 4rem; padding: 2.5rem; background: white; border-radius: 2.5rem; border: 1px solid #e2e8f0;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=100&auto=format&fit=crop"
+                                style="width: 50px; height: 50px; border-radius: 50%;" alt="Doctor">
+                            <div>
+                                <h5 style="margin: 0;">Director of Care</h5>
+                                <p style="margin: 0; font-size: 0.8rem; color: #94a3b8;">Nova Health Center</p>
+                            </div>
+                        </div>
+                        <p style="font-style: italic; color: #475569; font-size: 0.95rem; margin: 0;">"Our goal is
+                            to
+                            make world-class healthcare accessible to everyone in Mogadishu and beyond."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facility Location & Map -->
+    <section class="map-section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 3rem; margin-bottom: 1rem;">Visit Our Facility</h2>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Experience our world-class
+                    medical center located in the heart of the city.</p>
+            </div>
+
+            <div class="map-wrapper">
+                <!-- Using a high-quality stylized image to represent a map -->
+                <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&w=2000&auto=format&fit=crop"
+                    style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8) grayscale(0.2);">
+
+                <div class="map-overlay-card">
+                    <h4 style="color: var(--primary-blue); margin-bottom: 1rem;">Nova Health HQ</h4>
+                    <p style="font-size: 0.95rem; margin-bottom: 1.5rem;"><i class="fas fa-map-marker-alt"
+                            style="color: #ef4444; margin-right: 0.5rem;"></i> KM4 Circle, Wadajir District,
+                        Mogadishu,
+                        Somalia</p>
+                    <div style="background: #f1f5f9; padding: 1rem; border-radius: 1rem; margin-bottom: 1.5rem;">
+                        <span
+                            style="font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase;">Parking</span>
+                        <p style="font-size: 0.85rem; margin: 0.25rem 0 0 0;">Dedicated VIP & Emergency Parking
+                            available 24/7.</p>
+                    </div>
+                    <a href="https://maps.google.com" target="_blank" class="btn btn-primary"
+                        style="width: 100%; border-radius: 1rem; font-size: 0.9rem;">Open in Maps &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branch Network Section -->
+    <section
+        style="background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%); padding: 10rem 0; position: relative; overflow: hidden;">
+        <!-- Decorative Elements -->
+        <div
+            style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(14, 165, 233, 0.05) 0%, transparent 70%); border-radius: 50%;">
+        </div>
+        <div
+            style="position: absolute; bottom: -150px; left: -150px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%); border-radius: 50%;">
+        </div>
+
+        <div class="container" style="position: relative; z-index: 2;">
+            <div style="text-align: center; margin-bottom: 6rem;">
+                <span
+                    style="color: var(--primary-blue); font-weight: 800; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 1rem;">National
+                    Presence</span>
+                <h2 style="font-size: 4rem; color: #0f172a; margin-bottom: 1.5rem; line-height: 1.1;">Our Premium
+                    Branch
+                    Network</h2>
+                <p style="color: #64748b; max-width: 700px; margin: 0 auto; font-size: 1.25rem;">Nova Health
+                    provides
+                    elite medical facilities across Somalia, ensuring world-class care is always within your reach.
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem;">
+                <!-- Branch 1: Mogadishu -->
+                <div class="branch-card"
+                    style="padding: 0; background: white; border-radius: 2.5rem; overflow: hidden;">
+                    <div style="position: relative; height: 250px; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop"
+                            style="width: 100%; height: 100%; object-fit: cover;" alt="Nova Health Mogadishu">
+                        <div style="position: absolute; top: 1.5rem; left: 1.5rem;">
+                            <div class="status-indicator status-open"
+                                style="background: rgba(220, 252, 231, 0.95); backdrop-filter: blur(4px);">
+                                <div class="pulse" style="width: 8px; height: 8px;"></div> Main HQ Open
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 2.5rem;">
+                        <h3 style="margin-bottom: 0.75rem; color: #1e293b; font-size: 1.75rem;">Mogadishu Central
+                        </h3>
+                        <p
+                            style="color: #64748b; font-size: 1.05rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-map-marker-alt" style="color: #0ea5e9;"></i> KM4 Circle, Wadajir
+                            District
+                        </p>
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn btn-outline"
+                                style="flex: 1; padding: 1rem; border-radius: 1rem; font-weight: 700;">Visit
+                                Facility</button>
+                            <a href="tel:+252613996319" class="btn btn-primary"
+                                style="padding: 1rem 1.5rem; border-radius: 1rem;">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Branch 2: Garowe -->
+                <div class="branch-card"
+                    style="padding: 0; background: white; border-radius: 2.5rem; overflow: hidden;">
+                    <div style="position: relative; height: 250px; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=800&auto=format&fit=crop"
+                            style="width: 100%; height: 100%; object-fit: cover;" alt="Nova Health Garowe">
+                        <div style="position: absolute; top: 1.5rem; left: 1.5rem;">
+                            <div class="status-indicator"
+                                style="background: rgba(254, 252, 232, 0.95); backdrop-filter: blur(4px); color: #854d0e;">
+                                Opening Q3 2026</div>
+                        </div>
+                    </div>
+                    <div style="padding: 2.5rem;">
+                        <h3 style="margin-bottom: 0.75rem; color: #1e293b; font-size: 1.75rem;">Garowe Heights</h3>
+                        <p
+                            style="color: #64748b; font-size: 1.05rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-map-marker-alt" style="color: #6366f1;"></i> Puntland State Highway 1
+                        </p>
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn btn-outline"
+                                style="flex: 1; padding: 1rem; border-radius: 1rem; font-weight: 700;">Career
+                                Openings</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Branch 3: Hargeisa -->
+                <div class="branch-card"
+                    style="padding: 0; background: white; border-radius: 2.5rem; overflow: hidden;">
+                    <div style="position: relative; height: 250px; overflow: hidden;">
+                        <img src="https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=800&auto=format&fit=crop"
+                            style="width: 100%; height: 100%; object-fit: cover;" alt="Nova Health Hargeisa">
+                        <div style="position: absolute; top: 1.5rem; left: 1.5rem;">
+                            <div class="status-indicator"
+                                style="background: rgba(254, 252, 232, 0.95); backdrop-filter: blur(4px); color: #854d0e;">
+                                Opening Q4 2026</div>
+                        </div>
+                    </div>
+                    <div style="padding: 2.5rem;">
+                        <h3 style="margin-bottom: 0.75rem; color: #1e293b; font-size: 1.75rem;">Hargeisa North</h3>
+                        <p
+                            style="color: #64748b; font-size: 1.05rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-map-marker-alt" style="color: #ef4444;"></i> Independence Avenue,
+                            District
+                            2
+                        </p>
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn btn-outline"
+                                style="flex: 1; padding: 1rem; border-radius: 1rem; font-weight: 700;">Pre-Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Contact FAQ -->
+    <section class="faq-section-premium"
+        style="padding: 10rem 0; background: linear-gradient(rgba(241, 245, 249, 0.94), rgba(241, 245, 249, 0.94)), url('https://images.unsplash.com/photo-1576091160550-217359f4cf08?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: start;">
+                <div class="reveal-left">
+                    <div
+                        style="background: #e0f2fe; color: var(--primary-blue); padding: 8px 16px; border-radius: 50px; font-weight: 800; font-size: 0.8rem; text-transform: uppercase; width: fit-content; margin-bottom: 2rem;">
+                        Help Center</div>
+                    <h2 style="font-size: 4rem; margin-bottom: 2rem; color: #0f172a; line-height: 1.1;">Common <span
+                            style="background: linear-gradient(to right, #0ea5e9, #6366f1); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Questions.</span>
+                    </h2>
+                    <p style="color: #64748b; font-size: 1.25rem; line-height: 1.8; margin-bottom: 4rem;">Halkan ka
+                        hel
+                        jawaabaha ugu muhiimsan ee aad uga baahan tahay adeegyada Nova Health iyo sida aad noola
+                        xidhiidhi karto.</p>
+
+                    <div
+                        style="background: white; padding: 3.5rem; border-radius: 3rem; border: 1px solid #e2e8f0; box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.1); position: relative; overflow: hidden;">
+                        <div
+                            style="position: absolute; top: 0; right: 0; width: 150px; height: 150px; background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);">
+                        </div>
+                        <h4 style="font-size: 1.5rem; margin-bottom: 1.25rem; color: #1e293b;">Still Unsure?</h4>
+                        <p style="font-size: 1.05rem; color: #64748b; margin-bottom: 2.5rem; line-height: 1.6;">Our
+                            customer support specialists are available 24/7 via WhatsApp for instant assistance.</p>
+                        <a href="https://wa.me/252613996319" class="btn btn-primary"
+                            style="width: 100%; border-radius: 1.25rem; text-decoration: none; padding: 1.25rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i> Chat with us now
+                        </a>
+                    </div>
+                </div>
+
+                <div class="reveal-right">
+                    <div class="faq-item active">
+                        <div class="faq-question">
+                            <span class="faq-question-text"><span class="faq-q-badge">Q</span> Sideen u kansali karaa
+                                ballanta aan qabsaday?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <span class="faq-a-badge">A</span> Waxaad ku kansali kartaa ballanta adigoo galaya Patient
+                            Portal ama qaybta Contact-ka nagula soo xidhiidha ugu yaraan 24 saac ka hor waqtiga
+                            ballanta. Lacagta hore loo bixiyay waxaa laguugu soo celinayaa akoonkaaga 3 maalmood
+                            gudahood.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-question-text"><span class="faq-q-badge">Q</span> Ma bixisaan adeegga
+                                guriga loogu tago bukaanka?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <span class="faq-a-badge">A</span> Haa, kooxdayada 'Home Care' waxay bixiyaan adeegyo ay ka
+                            mid yihiin dhiig-qaadista, bedelaadda faashadda, iyo kormeerka guud ee caafimaadka. Fadlan
+                            nala soo xidhiidh si aad u codsato booqasho guriga ah.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-question-text"><span class="faq-q-badge">Q</span> Sideen u ballansan karaa
+                                dhakhtar gaar ah?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <span class="faq-a-badge">A</span> Waxaad ka dooran kartaa dhakhtarka aad rabto boggayaga
+                            "Doctors". Markaad ballanta qabsanayso, waxaad awood u leedahay inaad doorato magaca
+                            dhakhtarka aad doorbidayso haddii uu diyaar yahay waqtigaas.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-question-text"><span class="faq-q-badge">Q</span> Intee in le'eg ayay
+                                qaadataa helitaanka natiijada baaritaanka?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <span class="faq-a-badge">A</span> Natiijooyinka baaritaannada dhiigga ee caadiga ah waxay
+                            diyaar noqdaan 2-4 saac gudahood. Baaritaannada adag ama imaging-ka (MRI/CT) waxay qaadan
+                            karaan 12-24 saac. Dhammaan natiijooyinka waxaad ka heli kartaa Patient Portal.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-question-text"><span class="faq-q-badge">Q</span> Ma aqbashaan caymiska
+                                caafimaadka ee caalamiga ah?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <span class="faq-a-badge">A</span> Haa, Nova Health waxay xidhiidh dhow la leedahay
+                            shirkadaha caymiska ugu waaweyn caalamka sida Cigna, Allianz, Bupa, iyo Aetna. Fadlan nala
+                            soo xidhiidh si aan u xaqiijino caymiskaaga gaarka ah.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-question-text"><span class="faq-q-badge">Q</span> Sideen u heli karaa
+                                warqadaha caafimaadka ee hore?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <span class="faq-a-badge">A</span> Dhammaan taariikhdaada caafimaad (Medical History) waxay
+                            ku kaydsan tahay Patient Portal. Haddii aad u baahan tahay nuqul rasmi ah (Signed Copy),
+                            waxaad ka dalban kartaa qaybta reception-ka ama online ayaad ku dalban kartaa.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Ma bixisaan adeegyo turjubaan oo loogu talagalay dadka ajnabiga
+                            ah? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">Haa, waxaan haynaa turjubaanno ku hadla luuqadaha Carabiga,
+                            Ingiriisiga,
+                            Faransiiska, iyo Turkiga si aan u hubino in bukaan kastaa si sax ah u fahmo xaaladdiisa
+                            caafimaad.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Muxuu yahay lambarka degdega ah ee isbitaalka? <i
+                                class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">Xaaladaha degdega ah (Emergency), fadlan wac 911 haddii aad joogto
+                            Muqdisho. Haddii kale, lambarkayaga guud ee gurmadka degdega ah waa +252 61 3996319.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patient Care Guidelines & Somali Orientation -->
+    <section style="padding: 10rem 0; background: white;">
+        <div class="container">
+            <div class="section-header text-center reveal" style="margin-bottom: 6rem;">
+                <span
+                    style="color: #6366f1; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Daryeelka
+                    Bukaanka</span>
+                <h2 style="font-size: 3.5rem; color: #0f172a; margin-top: 1rem;">Hagaha Booqashada & Amniga</h2>
+                <p style="max-width: 650px; margin: 1.5rem auto; color: #64748b; font-size: 1.1rem;">Si loo xaqiijiyo
+                    jawi caafimaad oo deggan, waxaan ka codsaneynaa dhammaan booqdayaasha inay raacaan hab-maamuuska
+                    badbaadada.
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem;">
+                <!-- Guideline 1 -->
+                <div class="reveal"
+                    style="padding: 3.5rem; background: #f8fafc; border-radius: 3rem; border: 1px solid #f1f5f9; transition: 0.3s; text-align: center;">
+                    <div
+                        style="width: 70px; height: 70px; background: #e0f2fe; color: #0ea5e9; border-radius: 2rem; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; margin: 0 auto 2rem auto;">
+                        <i class="fas fa-mask"></i>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; color: #1e293b;">Nadaafadda</h3>
+                    <p style="color: #64748b; line-height: 1.6;">Isticmaal maaskaro iyo gacmo-dhaq marka aad gelayso
+                        isbitaalka si loo ilaaliyo badqabka bukaanka iyo shaqaalaha.</p>
+                </div>
+
+                <!-- Guideline 2 -->
+                <div class="reveal"
+                    style="padding: 3.5rem; background: #f8fafc; border-radius: 3rem; border: 1px solid #f1f5f9; transition: 0.3s; text-align: center;">
+                    <div
+                        style="width: 70px; height: 70px; background: #fef2f2; color: #ef4444; border-radius: 2rem; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; margin: 0 auto 2rem auto;">
+                        <i class="fas fa-volume-mute"></i>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; color: #1e293b;">Aamusnaanta</h3>
+                    <p style="color: #64748b; line-height: 1.6;">Fadlan iska ilaali qaylada iyo hadalka dheer. Nasashada
+                        bukaanka waa qayb muhiim ah oo ka mid ah bogsashada.</p>
+                </div>
+
+                <!-- Guideline 3 -->
+                <div class="reveal"
+                    style="padding: 3.5rem; background: #f8fafc; border-radius: 3rem; border: 1px solid #f1f5f9; transition: 0.3s; text-align: center;">
+                    <div
+                        style="width: 70px; height: 70px; background: #ecfdf5; color: #10b981; border-radius: 2rem; display: flex; align-items: center; justify-content: center; font-size: 1.75rem; margin: 0 auto 2rem auto;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 style="margin-bottom: 1rem; color: #1e293b;">Xadka Booqdayaasha</h3>
+                    <p style="color: #64748b; line-height: 1.6;">Kaliya 2 qof ayaa loo ogol yahay inay u galaan bukaanka
+                        hal mar si loo ilaaliyo jawiga qolka.</p>
+                </div>
+            </div>
+
+            <div class="reveal"
+                style="margin-top: 6rem; background: var(--primary-dark); padding: 4rem; border-radius: 4rem; color: white; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+                <div>
+                    <h3 style="font-size: 2.5rem; margin-bottom: 1rem;">Ma u baahan tahay caawimo gaar ah?</h3>
+                    <p style="color: #94a3b8; font-size: 1.1rem; line-height: 1.6;">Shaqaalahayaga qaabbilaadda waxay
+                        diyaar u yihiin inay kugu haggaann qayb kasta oo isbitaalka ka mid ah.
+                    </p>
+                </div>
+                <div style="text-align: right;">
+                    <a href="tel:+252613996319" class="btn btn-primary"
+                        style="padding: 1.25rem 3rem; border-radius: 1.5rem; background: #6366f1; border: none; font-weight: 800;">
+                        <i class="fas fa-headset" style="margin-right: 10px;"></i> Wac Reception-ka
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="container">
+        <div class="newsletter-box">
+            <div style="position: relative; z-index: 10;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Join Our Health Community</h2>
+                <p style="color: #94a3b8; max-width: 500px; margin: 0 auto;">Receive expert health tips, hospital
+                    updates, and wellness articles once a week.</p>
+                <form class="newsletter-form"
+                    onsubmit="event.preventDefault(); alert('Thank you for subscribing!'); this.reset();">
+                    <input type="email" placeholder="Enter your email address" class="newsletter-input" required>
+                    <button type="submit" class="btn btn-primary"
+                        style="padding: 1rem 2.5rem; border-radius: 1rem;">Subscribe Now</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="payment-section"
+        style="background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95)), url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-attachment: fixed; padding: 8rem 0;">
+        <div class="container">
+            <div style="text-align: center; max-width: 600px; margin: 0 auto 3rem auto;">
+                <h2 style="font-size: 3.5rem; margin-bottom: 1.5rem; letter-spacing: -1px; color: #0f172a;">Smart
+                    Digital Lobby</h2>
+                <div
+                    style="background: white; padding: 3rem; border-radius: 2.5rem; border: 1px solid #e2e8f0; margin-bottom: 3rem; text-align: left; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);">
+                    <div style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
+                        <div
+                            style="width: 60px; height: 60px; background: #eff6ff; border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: #2563eb; font-size: 1.5rem;">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 1.5rem; margin: 0 0 0.5rem 0; color: #1e293b;">Seamless Entry</h3>
+                            <p style="margin: 0; color: #64748b; line-height: 1.6;">Skip the waiting room. Generate your
+                                digital ticket instantly and proceed directly to your specialist.</p>
+                        </div>
+                    </div>
+
+                    <div style="border-top: 1px solid #f1f5f9; padding-top: 2rem;">
+                        <p style="color: #475569; font-weight: 500; margin-bottom: 1rem;">Available Instant Services:
+                        </p>
+                        <ul
+                            style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; color: #64748b;">
+                            <li style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-check"
+                                    style="color: #22c55e;"></i> E-Consultation Tickets</li>
+                            <li style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-check"
+                                    style="color: #22c55e;"></i> Direct Lab Access</li>
+                            <li style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-check"
+                                    style="color: #22c55e;"></i> Express Pharmacy</li>
+                            <li style="display: flex; align-items: center; gap: 0.5rem;"><i class="fas fa-check"
+                                    style="color: #22c55e;"></i> Instant Bill Pay</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="margin-top: 2rem; background: #f8fafc; padding: 1.5rem; border-radius: 1.5rem; border: 1px dashed #cbd5e1;">
+                        <h4 style="color: #334155; margin-bottom: 0.75rem; font-size: 1.1rem;"><i
+                                class="fas fa-info-circle" style="color: #3b82f6; margin-right: 0.5rem;"></i> Before You
+                            Enter:</h4>
+                        <ul
+                            style="list-style: none; padding: 0; margin: 0; color: #64748b; font-size: 0.95rem; display: grid; gap: 0.5rem;">
+                            <li>• Have your <strong>Patient ID</strong> or Appointment Reference ready.</li>
+                            <li>• Ensure your payment method (EVC Plus, E-Dahab, Card) is active.</li>
+                            <li>• For new patients, have your <strong>National ID</strong> or Passport details nearby.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <button id="reveal-payment-btn" class="btn btn-primary"
+                    style="padding: 1.5rem 4rem; font-size: 1.25rem; border-radius: 2rem; box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.3); background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); transition: all 0.3s ease;">
+                    Enter Digital Lobby <i class="fas fa-arrow-right" style="margin-left: 1rem;"></i>
+                </button>
+
+            </div>
+
+            <div id="all-payment-content" style="display: none; animation: fadeIn 0.6s ease-out;">
+                <div class="payment-methods">
+                    <div class="payment-card" data-method="EVC Plus" data-icon="fas fa-mobile-alt">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4>EVC Plus</h4>
+                        <p>Quick & secure mobile payment for local services.</p>
+                        <span style="font-size: 0.8rem; color: #22c55e; font-weight: 700;">Instant Activation</span>
+                    </div>
+                    <div class="payment-card" data-method="Premier Wallet" data-icon="fas fa-credit-card">
+                        <i class="fas fa-credit-card"></i>
+                        <h4>Premier Wallet</h4>
+                        <p>Manage large transactions with your digital wallet.</p>
+                        <span style="font-size: 0.8rem; color: #22c55e; font-weight: 700;">VIP Support</span>
+                    </div>
+                    <div class="payment-card" data-method="Visa / Mastercard" data-icon="fab fa-cc-visa">
+                        <i class="fab fa-cc-visa"></i>
+                        <h4>Visa / Mastercard</h4>
+                        <p>International and local card support enabled.</p>
+                        <span style="font-size: 0.8rem; color: #6366f1; font-weight: 700;">Global Reach</span>
+                    </div>
+                    <div class="payment-card" data-method="E-Dahab" data-icon="fas fa-wallet">
+                        <i class="fas fa-wallet"></i>
+                        <h4>E-Dahab</h4>
+                        <p>Reliable mobile payment solutions for patients.</p>
+                        <span style="font-size: 0.8rem; color: #22c55e; font-weight: 700;">24/7 Processing</span>
+                    </div>
+                </div>
+
+                <!-- How it Works & Benefits -->
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; margin-top: 6rem; text-align: left;">
+                    <div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #1e293b;">Sida uu u shaqeeyo (How
+                            it
+                            Works)</h3>
+                        <div style="display: grid; gap: 1.5rem;">
+                            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                                <div
+                                    style="width: 35px; height: 35px; background: #e0f2fe; color: #0ea5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0;">
+                                    1</div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 4px;">Dooro Adeegga (Select
+                                        Service)</strong>
+                                    <span style="color: #64748b; font-size: 0.9rem;">Dooro nooca lacag bixinta aad
+                                        rabto
+                                        inaad fuliso.</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                                <div
+                                    style="width: 35px; height: 35px; background: #e0f2fe; color: #0ea5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0;">
+                                    2</div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 4px;">Geli Xogta (Enter
+                                        Details)</strong>
+                                    <span style="color: #64748b; font-size: 0.9rem;">Geli lambarka taleefanka ama
+                                        faahfaahinta kaarkaaga.</span>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                                <div
+                                    style="width: 35px; height: 35px; background: #e0f2fe; color: #0ea5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; flex-shrink: 0;">
+                                    3</div>
+                                <div>
+                                    <strong style="display: block; margin-bottom: 4px;">Hel Rasiid (Receive
+                                        Receipt)</strong>
+                                    <span style="color: #64748b; font-size: 0.9rem;">Markaad dhammaystirto, rasiid
+                                        dhijitaal ah ayaad helaysaa.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: #1e293b;">Faa'iidooyinka (Key
+                            Benefits)</h3>
+                        <ul style="list-style: none; padding: 0; display: grid; gap: 1.2rem;">
+                            <li style="display: flex; gap: 0.75rem; align-items: center; color: #475569;">
+                                <i class="fas fa-shield-virus" style="color: #22c55e;"></i>
+                                <span style="font-weight: 600;">Ammaan 100% ah (Bank-grade Security)</span>
+                            </li>
+                            <li style="display: flex; gap: 0.75rem; align-items: center; color: #475569;">
+                                <i class="fas fa-history" style="color: #6366f1;"></i>
+                                <span style="font-weight: 600;">Taariikhda Lacag bixinta (Payment History)</span>
+                            </li>
+                            <li style="display: flex; gap: 0.75rem; align-items: center; color: #475569;">
+                                <i class="fas fa-receipt" style="color: #f59e0b;"></i>
+                                <span style="font-weight: 600;">Rasiid Toos ah (Auto-generated Receipts)</span>
+                            </li>
+                            <li style="display: flex; gap: 0.75rem; align-items: center; color: #475569;">
+                                <i class="fas fa-headset" style="color: #ef4444;"></i>
+                                <span style="font-weight: 600;">Taageero Nool (24/7 Live Billing Support)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: 4rem; text-align: center;">
+                    <div
+                        style="background: white; border: 1px solid #e2e8f0; padding: 3rem; border-radius: 2rem; display: inline-block; max-width: 500px;">
+                        <i class="fas fa-shield-alt"
+                            style="font-size: 3rem; color: #22c55e; margin-bottom: 1.5rem;"></i>
+                        <h3>Verified & Secure</h3>
+                        <p style="margin-bottom: 2rem;">All payments are processed through encrypted channels with
+                            256-bit
+                            SSL security.</p>
+                        <a href="login.html" class="btn btn-secondary" style="border-radius: 1rem;">Proceed to
+                            Patient
+                            Portal
+                            &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Partners Section (Ultra-Premium) -->
+    <section style="padding: 6rem 0; background: #f8fafc; border-top: 1px solid #f1f5f9; overflow: hidden;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <span
+                    style="color: #0ea5e9; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 1rem;">Network
+                    Integrity</span>
+                <h2 style="font-size: 2.5rem; color: #0f172a; font-weight: 900;">Trusted Insurance Partners</h2>
+                <p style="color: #64748b; font-size: 1.1rem; margin-top: 0.5rem;">Bahwadaagta Caymiska ee Nova Health
+                </p>
+            </div>
+
+            <div style="position: relative; width: 100%;">
+                <div class="logo-marquee" style="display: flex; gap: 4rem; animation: marquee 30s linear infinite;">
+                    <!-- Logo Nodes -->
+                    <div class="partner-logo-node">
+                        <i class="fas fa-shield-halved" style="color: #1a365d;"></i>
+                        <span>ALLIANZ GLOBAL</span>
+                    </div>
+                    <div class="partner-logo-node">
+                        <i class="fas fa-heart-circle-check" style="color: #0891b2;"></i>
+                        <span>CIGNA INT.</span>
+                    </div>
+                    <div class="partner-logo-node">
+                        <i class="fas fa-plus-square" style="color: #ef4444;"></i>
+                        <span>AETNA HEALTH</span>
+                    </div>
+                    <div class="partner-logo-node">
+                        <i class="fas fa-briefcase-medical" style="color: #1e40af;"></i>
+                        <span>BUPA CARE</span>
+                    </div>
+                    <div class="partner-logo-node">
+                        <i class="fas fa-file-shield" style="color: #dc2626;"></i>
+                        <span>AXA PREMIUM</span>
+                    </div>
+                    <div class="partner-logo-node">
+                        <i class="fas fa-user-check" style="color: #16a34a;"></i>
+                        <span>PRUDENTIAL</span>
+                    </div>
+                    <!-- Duplicate for loop -->
+                    <div class="partner-logo-node">
+                        <i class="fas fa-shield-halved" style="color: #1a365d;"></i>
+                        <span>ALLIANZ GLOBAL</span>
+                    </div>
+                    <div class="partner-logo-node">
+                        <i class="fas fa-heart-circle-check" style="color: #0891b2;"></i>
+                        <span>CIGNA INT.</span>
+                    </div>
+                    <div class="partner-logo-node">
+                        <i class="fas fa-plus-square" style="color: #ef4444;"></i>
+                        <span>AETNA HEALTH</span>
+                    </div>
+                    <div class="partner-logo-node">
+                        <i class="fas fa-briefcase-medical" style="color: #1e40af;"></i>
+                        <span>BUPA CARE</span>
+                    </div>
+                </div>
+
+                <!-- Gradient Masking for Marquee -->
+                <div
+                    style="position: absolute; top:0; left:0; width: 150px; height: 100%; background: linear-gradient(to right, #f8fafc, transparent); z-index: 2;">
+                </div>
+                <div
+                    style="position: absolute; top:0; right:0; width: 150px; height: 100%; background: linear-gradient(to left, #f8fafc, transparent); z-index: 2;">
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 4rem;">
+                <div
+                    style="display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; background: white; border-radius: 50px; border: 1px solid #e2e8f0; box-shadow: 0 10px 20px rgba(0,0,0,0.03);">
+                    <i class="fas fa-check-double" style="color: #10b981;"></i>
+                    <span style="font-weight: 700; color: #475569; font-size: 0.9rem;">DIRECT BILLING SETTLEMENT
+                        ACTIVE</span>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            @keyframes marquee {
+                0% {
+                    transform: translateX(0);
+                }
+
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+
+            .partner-logo-node {
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                gap: 1.5rem;
+                padding: 1.5rem 3rem;
+                background: white;
+                border-radius: 2rem;
+                border: 1px solid #f1f5f9;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+                transition: 0.3s;
+            }
+
+            .partner-logo-node:hover {
+                transform: translateY(-5px);
+                border-color: #0ea5e9;
+                box-shadow: 0 20px 40px rgba(14, 165, 233, 0.1);
+            }
+
+            .partner-logo-node i {
+                font-size: 2rem;
+            }
+
+            .partner-logo-node span {
+                font-weight: 800;
+                color: #1e293b;
+                letter-spacing: 1px;
+                font-size: 1.1rem;
+            }
+        </style>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="color: white;">
+                        <i class="fas fa-hospital-symbol logo-icon"></i>
+                        Nova Health
+                    </a>
+                    <p>Leading the way in medical excellence with advanced technology and compassionate care for our
+                        community.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="doctors.html">Doctors</a></li>
+                        <li><a href="login.html">Admin Portal</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Patient Rights</a></li>
+                        <li><a href="contact.html">Pay Bills</a></li>
+                        <li><a href="contact.html">Online Booking</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Wellness Blvd, Mogadishu</li>
+                        <li><i class="fas fa-phone"></i> +252 61 3996319</li>
+                        <li><i class="fas fa-envelope"></i> info@novahealth.center</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Nova Health Center. All rights reserved.</p>
+                <div class="social-links" style="display: flex; gap: 1rem;">
+                    <a href="#" style="color: white;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" style="color: white;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="color: white;"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-container" style="max-width: 500px; padding: 0; border-radius: 2rem; overflow: hidden;">
+            <button class="close-payment"
+                style="position: absolute; top: 1.5rem; right: 1.5rem; background: white; border: none; font-size: 1.25rem; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 10;">&times;</button>
+
+            <div id="payment-step-1" style="padding: 3rem 2.5rem; text-align: center;">
+                <div id="method-icon-bg"
+                    style="width: 80px; height: 80px; background: #e0f2fe; color: var(--primary-blue); border-radius: 2rem; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 1.5rem auto;">
+                    <i id="selected-method-icon" class=""></i>
+                </div>
+                <h2 id="selected-method-name"
+                    style="margin-bottom: 0.5rem; -webkit-text-fill-color: initial; background: none;"></h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Secure Payment Portal</p>
+
+                <form id="active-payment-form">
+                    <div id="dynamic-form-fields">
+                        <!-- Fields will be injected here -->
+                    </div>
+
+                    <div
+                        style="margin-top: 1.5rem; padding: 1rem; background: #f8fafc; border-radius: 1rem; margin-bottom: 2rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Service Fee</span>
+                            <strong>$50.00</strong>
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; font-weight: 700; color: var(--primary-blue);">
+                            <span>Total Payable</span>
+                            <span>$50.00</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"
+                        style="width: 100%; padding: 1.25rem; border-radius: 1rem; font-size: 1.1rem;">
+                        Pay Securely Now
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success State -->
+            <div id="payment-success" style="display: none; padding: 4rem 2.5rem; text-align: center;">
+                <div
+                    style="width: 80px; height: 80px; background: #f0fdf4; color: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 2rem auto;">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2 style="margin-bottom: 1rem;">Payment Successful!</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Your transaction has been processed. A
+                    receipt
+                    has been sent to your email/phone.</p>
+                <button class="btn btn-secondary close-payment-success" style="width: 100%; border-radius: 1rem;">Close
+                    Window</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/252613996319" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+
+    <script>
+        // Premium Calendar & Time Logic
+        let currentMonth = 1; // Start with February for 2026 demo
+        let currentYear = 2026;
+        let selectedDate = null;
+        let activePeriod = 'AM';
+
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        function initCalendar() {
+            renderCalendar(currentMonth, currentYear);
+            renderTimeSlots();
+        }
+
+        function renderCalendar(month, year) {
+            const calendarDays = document.getElementById('calendar-days');
+            const monthYearLabel = document.getElementById('current-month-year');
+
+            if (!calendarDays || !monthYearLabel) return;
+
+            calendarDays.innerHTML = '';
+            monthYearLabel.innerText = `${monthNames[month]} ${year}`;
+
+            // Week Day Labels (Starting from Sat as per user request)
+            const days = ['SAT', 'SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI'];
+            days.forEach(day => {
+                const label = document.createElement('div');
+                label.className = 'cal-day-label';
+                label.innerText = day;
+                calendarDays.appendChild(label);
+            });
+
+            // Get the day of the week for the 1st of the month
+            const firstDay = new Date(year, month, 1).getDay();
+
+            // Adjusting firstDay to our Sat-Fri grid
+            // JS getDay(): 0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+            // Our index: 0=Sat, 1=Sun, 2=Mon, 3=Tue, 4=Wed, 5=Thu, 6=Fri
+            // Mapping: 6->0, 0->1, 1->2, 2->3, 3->4, 4->5, 5->6
+            let adjustedFirstDay = (firstDay + 1) % 7;
+
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Add leading empty slots
+            for (let i = 0; i < adjustedFirstDay; i++) {
+                const empty = document.createElement('div');
+                calendarDays.appendChild(empty);
+            }
+
+            // Current date for disabling past dates
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dateBtn = document.createElement('div');
+                dateBtn.className = 'cal-date';
+                dateBtn.innerText = i;
+
+                const thisDate = new Date(year, month, i);
+
+                if (thisDate < today) {
+                    dateBtn.classList.add('disabled');
+                }
+
+                dateBtn.onclick = () => {
+                    if (!dateBtn.classList.contains('disabled')) {
+                        document.querySelectorAll('.cal-date').forEach(d => d.classList.remove('active'));
+                        dateBtn.classList.add('active');
+                        selectedDate = thisDate;
+                    }
+                };
+
+                calendarDays.appendChild(dateBtn);
+            }
+        }
+
+        function changeMonth(dir) {
+            currentMonth += dir;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            renderCalendar(currentMonth, currentYear);
+        }
+
+        function toggleAMPM(period) {
+            activePeriod = period;
+            const switcher = document.getElementById('ampm-switch');
+            if (switcher) switcher.setAttribute('data-active', period);
+
+            document.querySelectorAll('.ampm-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.innerText.includes(period));
+            });
+
+            renderTimeSlots();
+        }
+
+        function renderTimeSlots() {
+            const slotsContainer = document.getElementById('time-slots');
+            if (!slotsContainer) return;
+            slotsContainer.innerHTML = '';
+
+            const amSlots = ['08:00', '09:00', '10:00', '11:00', '11:45'];
+            const pmSlots = ['01:30', '02:45', '04:00', '05:15', '06:30', '08:00'];
+
+            const slots = activePeriod === 'AM' ? amSlots : pmSlots;
+
+            slots.forEach(time => {
+                const btn = document.createElement('div');
+                btn.className = 'slot-btn';
+                btn.innerText = `${time} ${activePeriod}`;
+
+                btn.onclick = () => {
+                    document.querySelectorAll('.slot-btn').forEach(s => s.classList.remove('active'));
+                    btn.classList.add('active');
+                };
+
+                slotsContainer.appendChild(btn);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initCalendar();
+
+            // Handle form reveal
+            const revealBtn = document.getElementById('reveal-booking-btn');
+            const allContent = document.getElementById('all-booking-content');
+
+            if (revealBtn) {
+                revealBtn.addEventListener('click', () => {
+                    allContent.style.display = 'grid';
+                    setTimeout(() => {
+                        allContent.style.transform = 'translateY(0)';
+                        allContent.style.opacity = '1';
+                    }, 10);
+                    revealBtn.style.display = 'none';
+                    allContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+
+            // Form Submit Simulation
+            const bookingForm = document.getElementById('appointment-form');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const btn = bookingForm.querySelector('.premium-booking-btn');
+                    const originalText = btn.innerHTML;
+
+                    btn.disabled = true;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Finalizing Appointment...';
+
+                    setTimeout(() => {
+                        alert('Your Global Appointment has been scheduled successfully! We have sent a confirmation to your phone and email.');
+                        bookingForm.reset();
+                        btn.disabled = false;
+                        btn.innerHTML = originalText;
+                        initCalendar();
+                        selectedDate = null;
+
+                        // Scroll back to top of booking section
+                        document.getElementById('appointment-booking').scrollIntoView({ behavior: 'smooth' });
+
+                        allContent.style.transform = 'translateY(50px)';
+                        allContent.style.opacity = '0';
+                        setTimeout(() => {
+                            allContent.style.display = 'none';
+                            revealBtn.style.display = 'block';
+                        }, 500);
+                    }, 2500);
+                });
+            }
+
+            // FAQ and other simple interactions
+            document.querySelectorAll('.faq-question').forEach(button => {
+                button.addEventListener('click', () => {
+                    const item = button.parentElement;
+                    const isActive = item.classList.contains('active');
+                    document.querySelectorAll('.faq-item').forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                    });
+                    if (!isActive) item.classList.add('active');
+                });
+            });
+
+            // Payment Logic
+            const paymentModal = document.getElementById('payment-modal');
+            const closePayment = document.querySelector('.close-payment');
+            const paymentCards = document.querySelectorAll('.payment-card');
+            const paymentForm = document.getElementById('active-payment-form');
+            const dynamicFields = document.getElementById('dynamic-form-fields');
+            const successState = document.getElementById('payment-success');
+            const step1 = document.getElementById('payment-step-1');
+            const methodIcon = document.getElementById('selected-method-icon');
+            const methodName = document.getElementById('selected-method-name');
+
+            paymentCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const method = card.getAttribute('data-method');
+                    const iconClass = card.getAttribute('data-icon');
+                    methodName.innerText = method;
+                    methodIcon.className = iconClass;
+                    step1.style.display = 'block';
+                    successState.style.display = 'none';
+                    let fields = '';
+                    if (method === 'EVC Plus' || method === 'E-Dahab') {
+                        fields = `<div class="form-group" style="text-align: left;"><label class="form-label">Phone Number (Mobile Money)</label><input type="tel" class="form-input" placeholder="0613996319" required></div>
+                                  <div class="form-group" style="text-align: left;"><label class="form-label">PIN / Password (Sirta)</label><input type="password" class="form-input" placeholder="****" required></div>`;
+                    } else if (method === 'Visa / Mastercard') {
+                        fields = `<div class="form-group" style="text-align: left;"><label class="form-label">Card Number</label><input type="text" class="form-input" placeholder="xxxx xxxx xxxx xxxx" required></div><div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: left;"><div class="form-group"><label class="form-label">Expiry Date</label><input type="text" class="form-input" placeholder="MM/YY" required></div><div class="form-group"><label class="form-label">CVV</label><input type="password" class="form-input" placeholder="***" maxlength="3" required></div></div>`;
+                    } else {
+                        fields = `<div class="form-group" style="text-align: left;"><label class="form-label">Wallet Account ID</label><input type="text" class="form-input" placeholder="Enter ID" required></div>`;
+                    }
+                    dynamicFields.innerHTML = fields;
+                    paymentModal.style.display = 'flex';
+                });
+            });
+
+            if (closePayment) closePayment.onclick = () => paymentModal.style.display = 'none';
+
+            const closeSuccess = document.querySelector('.close-payment-success');
+            if (closeSuccess) closeSuccess.onclick = () => paymentModal.style.display = 'none';
+
+            if (paymentForm) {
+                paymentForm.onsubmit = (e) => {
+                    e.preventDefault();
+                    const btn = paymentForm.querySelector('button');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                    btn.disabled = true;
+                    setTimeout(() => {
+                        step1.style.display = 'none';
+                        successState.style.display = 'block';
+                        btn.disabled = false;
+                        btn.innerHTML = originalText;
+                    }, 2000);
+                };
+            }
+
+            const revealPaymentBtn = document.getElementById('reveal-payment-btn');
+            const paymentContent = document.getElementById('all-payment-content');
+            if (revealPaymentBtn && paymentContent) {
+                revealPaymentBtn.onclick = () => {
+                    paymentContent.style.display = 'block';
+                    revealPaymentBtn.style.display = 'none';
+                };
+            }
+
+            // Reveal Animation Observer
+            const observerOptions = {
+                threshold: 0.15,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+                revealObserver.observe(el);
+            });
+        });
+    </script>
+    <!-- Ambulance Booking Modal (Expanded & High-Visibility) -->
+    <div id="ambulance-modal" class="modal-overlay">
+        <div class="modal-container"
+            style="max-width: 850px; padding: 4rem; border: 2px solid #ef4444; box-shadow: 0 0 100px rgba(239, 68, 68, 0.2); max-height: 90vh; overflow-y: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+                <div>
+                    <h3
+                        style="color: #ef4444; font-size: 2.5rem; display: flex; align-items: center; gap: 1rem; font-weight: 900; letter-spacing: -1px;">
+                        <i class="fas fa-truck-medical"></i> EMERGENCY DISPATCH
+                    </h3>
+                    <p style="color: #64748b; font-size: 1.1rem; margin-top: 5px;">Codso Gurmadka Deg-dega ah ee 24-ka
+                        Saac</p>
+                </div>
+                <button onclick="closeAmbulanceModal()"
+                    style="background: #fee2e2; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #ef4444; font-size: 1.5rem; transition: 0.3s;"
+                    onmouseover="this.style.transform='rotate(90deg)'" onmouseout="this.style.transform='rotate(0)'">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <form id="ambulance-form">
+                <div class="form-row"
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label class="form-label" style="font-size: 1.1rem; font-weight: 700;">Requester Name
+                            (Magacaaga)</label>
+                        <input type="text" class="form-input" style="padding: 1.25rem; font-size: 1.1rem;"
+                            placeholder="Waa kuuma magacaaga?" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label class="form-label" style="font-size: 1.1rem; font-weight: 700;">Phone Number
+                            (Telefoonka)</label>
+                        <input type="tel" class="form-input" style="padding: 1.25rem; font-size: 1.1rem;"
+                            placeholder="061xxxxxxx" required>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 2rem;">
+                    <label class="form-label" style="font-size: 1.1rem; font-weight: 700;">Patient Name (Magaca
+                        Bukaanka)</label>
+                    <input type="text" class="form-input" style="padding: 1.25rem; font-size: 1.1rem;"
+                        placeholder="Magaca qofka jiran" required>
+                </div>
+
+                <div class="form-row"
+                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label class="form-label" style="font-size: 1.1rem; font-weight: 700;">Banadir District
+                            (Degmada)</label>
+                        <select class="form-input" style="padding: 1.25rem; font-size: 1.1rem;" required>
+                            <option value="" disabled selected>Dooro Degmada</option>
+                            <option>Abdiaziz</option>
+                            <option>Bondhere</option>
+                            <option>Daynile</option>
+                            <option>Dharkenley</option>
+                            <option>Hamar Jajab</option>
+                            <option>Hamar Weyne</option>
+                            <option>Heliwa</option>
+                            <option>Hodan</option>
+                            <option>Howlwadag</option>
+                            <option>Kaxda</option>
+                            <option>Karan</option>
+                            <option>Shangani</option>
+                            <option>Shibis</option>
+                            <option>Waberi</option>
+                            <option>Wadajir</option>
+                            <option>Warta Nabadda</option>
+                            <option>Yaqshid</option>
+                            <option>Darussalam</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                        <label class="form-label" style="font-size: 1.1rem; font-weight: 700;">Emergency Level (Heerka
+                            Gurmadka)</label>
+                        <select class="form-input"
+                            style="padding: 1.25rem; font-size: 1.1rem; border-left: 8px solid #ef4444; background: #fff1f2;"
+                            required>
+                            <option value="critical">Critical (Aad u daran - Red)</option>
+                            <option value="urgent">Urgent (Deg-deg ah - Orange)</option>
+                            <option value="stable">Stable (Wuu fiican yahay - Green)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 2rem;">
+                    <label class="form-label" style="font-size: 1.1rem; font-weight: 700;">Specific Address / Landmark
+                        (Meesha uu ku sugan yahay)</label>
+                    <textarea class="form-input" style="padding: 1.25rem; font-size: 1.1rem;"
+                        placeholder="Tusaale: Isgoyska KM4 dhinaca Hodan, agagaarka Hoteelka..." rows="2"
+                        required></textarea>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 3rem;">
+                    <label class="form-label" style="font-size: 1.1rem; font-weight: 700;">Brief Medical Condition
+                        (Sharaxaad kooban)</label>
+                    <textarea class="form-input" style="padding: 1.25rem; font-size: 1.1rem;"
+                        placeholder="Maxaa ku dhacay bukaanka oo hadda ka muuqda?" rows="2" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-emergency"
+                    style="font-size: 1.25rem; padding: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); width: 100%; border-radius: 1.5rem; box-shadow: 0 15px 40px rgba(239, 68, 68, 0.4); border: none; color: white; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 1rem;">
+                    <i class="fas fa-satellite-dish fa-beat"></i> DISPATCH AMBULANCE NOW
+                </button>
+            </form>
+
+            <!-- Success Message Overlay inside Modal -->
+            <div id="ambulance-success" class="form-success-overlay" style="border-radius: 2rem; padding: 3rem;">
+                <div
+                    style="width: 90px; height: 90px; background: #fef2f2; color: #ef4444; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin-bottom: 1.5rem;">
+                    <i class="fas fa-truck-medical"></i>
+                </div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: #1e293b;">Request Received!</h3>
+                <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 2rem;">Macamiil si deg deg ah ayaa
+                    lagugu
+                    adeega.</p>
+                <button onclick="closeAmbulanceModal()" class="btn-submit"
+                    style="background: #f1f5f9; color: #475569;">Close</button>
+            </div>
+        </div>
+        <!-- Home Visit Modal -->
+        <div id="home-visit-modal" class="modal-overlay">
+            <div class="modal-container" style="max-width: 600px; padding: 2.5rem; max-height: 90vh; overflow-y: auto;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h3 style="color: #0ea5e9; font-size: 1.8rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-home"></i> Home Doctor Visit
+                    </h3>
+                    <button onclick="closeHomeVisitModal()"
+                        style="background: #f1f5f9; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #64748b;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <form id="home-visit-form">
+                    <div class="form-group">
+                        <label class="form-label">Patient Name (Magaca Bukaanka)</label>
+                        <input type="text" class="form-input" placeholder="Enter patient's name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number (Telefoonka)</label>
+                        <input type="tel" class="form-input" placeholder="+252..." required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Address (Cinwaanka Guriga)</label>
+                        <textarea class="form-input" placeholder="Enter detailed address / landmarks..." rows="2"
+                            required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Preferred Time (Waqtiga)</label>
+                        <input type="datetime-local" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Symptoms (Calaamadaha)</label>
+                        <textarea class="form-input" placeholder="Describe symptoms briefly..." rows="2"
+                            required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-emergency"
+                        style="background: #0ea5e9; font-size: 1.1rem; padding: 1.2rem; box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);">
+                        Confirm Home Visit
+                    </button>
+                </form>
+
+                <div id="home-visit-success" class="form-success-overlay"
+                    style="border-radius: 2rem; padding: 3rem; display: none;">
+                    <div
+                        style="width: 90px; height: 90px; background: #f0f9ff; color: #0ea5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin-bottom: 1.5rem;">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: #1e293b;">Visit Scheduled!</h3>
+                    <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 2rem;">Dhakhtarka ayaa kula soo xiriiri
+                        doona dhawaan.</p>
+                    <button
+                        onclick="document.getElementById('home-visit-success').style.display='none'; closeHomeVisitModal();"
+                        class="btn-submit" style="background: #f1f5f9; color: #475569;">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIP Service Modal -->
+        <div id="vip-service-modal" class="modal-overlay">
+            <div class="modal-container" style="max-width: 600px; padding: 2.5rem; max-height: 90vh; overflow-y: auto;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h3 style="color: #16a34a; font-size: 1.8rem; display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-star"></i> VIP Services Request
+                    </h3>
+                    <button onclick="closeVIPModal()"
+                        style="background: #f1f5f9; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #64748b;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <form id="vip-form">
+                    <div class="form-group">
+                        <label class="form-label">Full Name (Magacaaga)</label>
+                        <input type="text" class="form-input" placeholder="Waa kuuma magacaaga?" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number (Telefoonka)</label>
+                        <input type="tel" class="form-input" placeholder="061xxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Service Type (Nooca Adeegga)</label>
+                        <select class="form-input" required>
+                            <option value="" disabled selected>Dooro Adeegga</option>
+                            <option value="suite">VIP Suite Booking</option>
+                            <option value="concierge">Personal Concierge</option>
+                            <option value="privacy">High-Privacy Consultation</option>
+                            <option value="transport">Luxury Medical Transport</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Special Requests (Codsi Gaar ah)</label>
+                        <textarea class="form-input" placeholder="Maxaa kale oo aad u baahan tahay?"
+                            rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-emergency"
+                        style="background: #22c55e; font-size: 1.1rem; padding: 1.25rem; font-weight: 800; text-transform: uppercase;">
+                        Request VIP Access
+                    </button>
+                </form>
+
+                <div id="vip-success" class="form-success-overlay"
+                    style="border-radius: 2rem; padding: 3rem; display: none;">
+                    <div
+                        style="width: 90px; height: 90px; background: #f0fdf4; color: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin-bottom: 1.5rem;">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: #1e293b;">Request Received</h3>
+                    <p style="font-size: 1.2rem; color: #64748b; margin-bottom: 2rem;">Our VIP Manager will contact you
+                        personally within 15 minutes.</p>
+                    <button onclick="document.getElementById('vip-success').style.display='none'; closeVIPModal();"
+                        class="btn-submit" style="background: #f1f5f9; color: #475569;">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            /* --- GLOBAL MODAL CONTROLS --- */
+            function openAmbulanceModal() { document.getElementById('ambulance-modal').style.display = 'flex'; }
+            function closeAmbulanceModal() { document.getElementById('ambulance-modal').style.display = 'none'; }
+
+            function openHomeVisitModal() { document.getElementById('home-visit-modal').style.display = 'flex'; }
+            function closeHomeVisitModal() { document.getElementById('home-visit-modal').style.display = 'none'; }
+
+            function openVIPModal() { document.getElementById('vip-service-modal').style.display = 'flex'; }
+            function closeVIPModal() { document.getElementById('vip-service-modal').style.display = 'none'; }
+
+            // Close on outside click
+            window.addEventListener('click', function (e) {
+                if (e.target.classList.contains('modal-overlay')) {
+                    e.target.style.display = 'none';
+                }
+            });
+
+            /* --- FORM SUBMISSIONS --- */
+            document.addEventListener('DOMContentLoaded', () => {
+                // Ambulance Form
+                const ambForm = document.getElementById('ambulance-form');
+                if (ambForm) {
+                    ambForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const btn = ambForm.querySelector('button');
+                        const originalText = btn.innerHTML;
+                        btn.disabled = true;
+                        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Dispatching Fleet...';
+                        setTimeout(() => {
+                            document.getElementById('ambulance-success').style.display = 'flex';
+                            ambForm.reset();
+                            btn.disabled = false;
+                            btn.innerHTML = originalText;
+                        }, 2000);
+                    });
+                }
+
+                // Home Visit Form
+                const hvForm = document.getElementById('home-visit-form');
+                if (hvForm) {
+                    hvForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const btn = hvForm.querySelector('button');
+                        const originalText = btn.innerHTML;
+                        btn.disabled = true;
+                        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Scheduling...';
+                        setTimeout(() => {
+                            document.getElementById('home-visit-success').style.display = 'flex';
+                            hvForm.reset();
+                            btn.disabled = false;
+                            btn.innerHTML = originalText;
+                        }, 1500);
+                    });
+                }
+
+                // VIP Form
+                const vipForm = document.getElementById('vip-form');
+                if (vipForm) {
+                    vipForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const btn = vipForm.querySelector('button');
+                        const originalText = btn.innerHTML;
+                        btn.disabled = true;
+                        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                        setTimeout(() => {
+                            document.getElementById('vip-success').style.display = 'flex';
+                            vipForm.reset();
+                            btn.disabled = false;
+                            btn.innerHTML = originalText;
+                        }, 1500);
+                    });
+                }
+
+                // Contact Form
+                const contactForm = document.getElementById('premium-contact-form');
+                if (contactForm) {
+                    contactForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const btn = contactForm.querySelector('button');
+                        const originalText = btn.innerHTML;
+                        btn.disabled = true;
+                        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                        setTimeout(() => {
+                            contactForm.style.display = 'none';
+                            document.getElementById('contact-success-message').style.display = 'flex';
+                            btn.disabled = false;
+                            btn.innerHTML = originalText;
+                        }, 2000);
+                    });
+                }
+            });
+
+            function logout() {
+                localStorage.removeItem('nova_isLoggedIn');
+                window.location.href = 'index.html';
+            }
+        </script>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="index.html" class="logo" style="color: white;">
+                            <i class="fas fa-hospital-symbol logo-icon"></i>
+                            Nova Health
+                        </a>
+                        <p>Leading the way in medical excellence with advanced technology and compassionate care for our
+                            community.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Navigate</h4>
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="doctors.html">Doctors</a></li>
+                            <li><a href="pharmacy.html">Pharmacy</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Support</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Patient Rights</a></li>
+                            <li><a href="contact.html">Pay Bills</a></li>
+                            <li><a href="contact.html">Online Booking</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact Info</h4>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-map-marker-alt"></i> 123 Wellness Blvd, Mogadishu</li>
+                            <li><i class="fas fa-phone"></i> +252 61 3996319</li>
+                            <li><i class="fas fa-envelope"></i> info@novahealth.center</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Nova Health Center. All rights reserved.</p>
+                    <div class="social-links" style="display: flex; gap: 1rem;">
+                        <a href="#" style="color: white;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" style="color: white;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white;"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" style="color: white;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+</body>
+
+</html>
